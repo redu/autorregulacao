@@ -1,2 +1,25 @@
-<h1>ArExercise#index</h1>
-<p>Find me in app/views/ar_exercise/index.html.erb</p>
+<div class="row">
+  <div class="span11">
+    <%= render :partial => 'ar_exercise/admin_nav' %>
+    <p class="span11">Estes são os exercícios autorrgurlatórios criados para esta disciplina. Clique no nome do exercício para avalia-lo individualmente.</p>
+
+    <table class="table-with-borderradius">
+      <thead>
+        <th><%= t('Nome do exercício') %></th>
+        <th><%= t('Criado em') %></th>
+        <th><%= t('Última resposta em') %></th>
+        <th><%= t('Quantidade de respostas') %></th>
+      </thead>
+      <tbody>
+        <% 3.times do %>
+          <tr>
+            <td><%= link_to "O que você aprendeu?", '/ar_exercise/show' %></td>
+            <td><%= t(Date.today) %></td>
+            <td><%= t(Date.today) %></td>
+            <td>12</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

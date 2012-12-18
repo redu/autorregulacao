@@ -1,0 +1,12 @@
+<ul class="tabs tabs-big">
+  <li class="tab <%= current_page?('/ar_exercise/new') ? 'tab-active' : '' %>">
+    <%= link_to "Novo exercício", "/ar_exercise/new", class: 'tab-title' %>
+  </li>
+  <% index_or_show = current_page?('/ar_exercise/index') || current_page?('/ar_exercise/show') %>
+  <li class="tab <%= index_or_show ? 'tab-active' : '' %>">
+    <%= link_to "Verificar exercícios", "/ar_exercise/index", class: 'tab-title' %>
+    <% if current_page?('/ar_exercise/show') %>
+      <span class="tab-sub-title legend"><%= t('Correção') %></span>
+    <% end %>
+  </li>
+</ul>

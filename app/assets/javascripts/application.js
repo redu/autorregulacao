@@ -12,4 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require modernizr
+//= require jquery.autosize.min
+//= require placeholder-polyfill.min
+//= require bootstrap-redu
+//= require holder
