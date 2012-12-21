@@ -21,12 +21,28 @@
     </blockquote>
 
     <%= form_tag '/', method: :post do %>
-      <%= label_tag :justification, t('Está bem justificado? Explique') %>
-      <%= text_area_tag :justification %>
+      <div class="control-group">
+        <div class="control-group">
+          <div class="control-label">
+            <%= label_tag :justification, t('Está bem justificado? Explique') %>
+          </div>
+          <div class="control">
+            <%= text_area_tag :justification %>
+          </div>
+        </div>
+      </div>
 
-      <%= label_tag :recommendation, t('O que você recomenda?') %>
-      <%= text_area_tag :recommendation %>
+      <div class="control-group">
+        <div class="control-label">
+          <%= label_tag :recommendation, t('O que você recomenda?') %>
+        </div>
+        <div class="control">
+          <%= text_area_tag :recommendation %>
+        </div>
+      </div>
 
-      <%= link_to "Voltar", "/ar_exercise/cooperation_index", class: 'button button-danger button-big' %>
-      <%= button_tag t('Cooperar'), class: 'button-primary button-big' %>
+      <div class="form-actions">
+        <%= link_to "Voltar", "/ar_exercise/cooperation_index", class: 'button button-danger button-big' %>
+        <%= button_tag t('Cooperar'), class: 'button-primary button-big' %>
+      </div>
     <% end %>

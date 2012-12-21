@@ -53,14 +53,27 @@
   <hr />
 
   <%= form_tag '/feedback', method: 'post' do %>
-    <%= field_set_tag do %>
-      <%= label_tag :justification, ('Explique o motivo') %>
-      <%= text_area_tag :justification %>
+    <div class="control-group">
+      <div class="control-label">
+        <%= label_tag :justification, ('Explique o motivo') %>
+      </div>
+      <div class="control">
+        <%= text_area_tag :justification %>
+      </div>
+    </div>
 
-      <%= label_tag :overall_jusfication, ('Em que este trabalho ajudou?') %>
-      <%= text_area_tag :overall_jusfication %>
 
+    <div class="control-group">
+      <div class="control-label">
+        <%= label_tag :overall_jusfication, ('Em que este trabalho ajudou?') %>
+      </div>
+      <div class="control">
+        <%= text_area_tag :overall_jusfication %>
+      </div>
+    </div>
+
+    <div class="form-actions">
       <%= button_tag t('Finalizar'), class: 'button-primary' %>
-    <% end %>
+    </div>
   <% end %>
 </div>

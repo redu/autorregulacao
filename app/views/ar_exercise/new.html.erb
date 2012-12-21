@@ -4,12 +4,27 @@
   <p>Preencha os três campos abaixo com questões relativas aos assuntos discutidos em sala. Os alunos poderão responder anonimamente relatando as dificuldades enfrentadas.</p>
   <% 1.upto(3) do |i| %>
     <%= field_set_tag t("Questão número #{i}") do %>
-      <%= label_tag :"name_#{i}", t('Nome') %>
-      <%= text_field_tag :"name_#{i}" %>
-      <%= label_tag :"question_#{i}", t('Conteúdo') %>
-      <%= text_area_tag :"question_#{i}" %>
+      <div class="control-group">
+        <div class="control-label">
+          <%= label_tag :"name_#{i}", t('Nome') %>
+        </div>
+        <div class="control">
+          <%= text_field_tag :"name_#{i}" %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <div class="control-label">
+          <%= label_tag :"question_#{i}", t('Conteúdo') %>
+        </div>
+        <div class="control">
+          <%= text_area_tag :"question_#{i}" %>
+        </div>
+      </div>
     <% end %>
   <% end %>
 
-  <%= button_tag t('Criar exercício'), class: 'button-primary button-big' %>
+  <div class="form-actions">
+    <%= button_tag t('Criar exercício'), class: 'button-primary button-big' %>
+  </div>
 <% end %>

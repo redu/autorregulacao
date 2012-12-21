@@ -3,14 +3,34 @@
 <%= render :partial => 'ar_exercise/statement' %>
 
 <%= form_tag '/', method: :post do %>
-  <%= label_tag :preliminar_answer, t('Minha resposta inicial') %>
-  <%= text_area_tag :preliminar_answer %>
+  <div class="control-group">
+    <div class="control-label">
+      <%= label_tag :preliminar_answer, t('Minha resposta inicial') %>
+    </div>
+    <div class="control">
+      <%= text_area_tag :preliminar_answer %>
+    </div>
+  </div>
 
-  <%= label_tag :evaluation_answer, t('O que fiz mal?') %>
-  <%= text_area_tag :evaluation_answer %>
+  <div class="control-group">
+    <div class="control-label">
+      <%= label_tag :evaluation_answer, t('O que fiz mal?') %>
+    </div>
+    <div class="control">
+      <%= text_area_tag :evaluation_answer %>
+    </div>
+  </div>
 
-  <%= label_tag :justification_answer, t('Por que fiz mal?') %>
-  <%= text_area_tag :justification_answer %>
+  <div class="control-group">
+    <div class="control-label">
+      <%= label_tag :justification_answer, t('Por que fiz mal?') %>
+    </div>
+    <div class="control">
+      <%= text_area_tag :justification_answer %>
+    </div>
+  </div>
 
-  <%= link_to t('Responder questão'), '/ar_exercise/answered', class: 'button-primary button-big' %>
+  <div class="form-actions">
+    <%= link_to t('Responder'), '/ar_exercise/answered', class: 'button-primary button-big' %>
+  </div>
 <% end %>
