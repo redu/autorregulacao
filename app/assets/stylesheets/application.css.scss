@@ -15,3 +15,28 @@
 .container {
   width: 745px; // canvas container
 }
+
+.development {
+
+  &.space-canvas {
+    .container {
+      position: relative;
+      top: 220px;
+      left: 280px;
+    }
+
+    position: absolute;
+    background: url('space-background.png') no-repeat -75px 0;
+  }
+
+  &.lecture-canvas {
+    .container {
+      position: relative;
+      top: 440px;
+      left: 300px;
+    }
+
+    position: absolute;
+    background: url('lecture-background.png') no-repeat -75px 0;
+  }
+}
