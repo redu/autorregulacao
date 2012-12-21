@@ -1,0 +1,18 @@
+<ul class="tabs">
+  <% answered_or_answer = current_page?('/ar_exercise/answer') || current_page?('/ar_exercise/answered') %>
+  <li class="tab <%= answered_or_answer ? 'tab-active' : '' %>">
+    <% if current_page?('/ar_exercise/answer') %>
+      <%= link_to "Responder", '/ar_exercise/answer', class: 'tab-title' %>
+    <% else %>
+      <%= link_to "Responder", '/ar_exercise/answered', class: 'tab-title' %>
+      <span class="tab-sub-title legend">Ver respostas</span>
+    <% end %>
+  </li>
+  <% index_or_show = current_page?('/ar_exercise/cooperation_index') || current_page?('/ar_exercise/cooperate') %>
+  <li class="tab <%= index_or_show ? 'tab-active' : '' %>">
+    <%= link_to "Cooperação", '/ar_exercise/cooperation_index', class: 'tab-title' %>
+    <% if current_page?('/ar_exercise/cooperate') %>
+      <span class="tab-sub-title legend">Cooperar</span>
+    <% end %>
+  </li>
+</ul>

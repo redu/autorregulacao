@@ -1,0 +1,19 @@
+<%= render :partial => 'ar_exercise/coop_nav' %>
+
+<p>
+  Um móvel realiza um movimento circular e uniforme, com velocidade de 5 m/s. Sendo a aceleração centrípeta igual a 10 m/s2, determine o raio de sua trajetória.
+</p>
+<%= image_tag 'holder.js/640x120' %>
+
+<%= form_tag '/', method: :post do %>
+  <%= label_tag :preliminar_answer, t('Minha resposta inicial') %>
+  <%= text_area_tag :preliminar_answer %>
+
+  <%= label_tag :evaluation_answer, t('O que fiz mal?') %>
+  <%= text_area_tag :evaluation_answer %>
+
+  <%= label_tag :justification_answer, t('Por que fiz mal?') %>
+  <%= text_area_tag :justification_answer %>
+
+  <%= link_to t('Responder questão'), '/ar_exercise/answered', class: 'button-primary button-big' %>
+<% end %>

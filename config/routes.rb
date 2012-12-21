@@ -2,6 +2,10 @@ Autoregulation::Application.routes.draw do
   get "ar_exercise/new"
   get "ar_exercise/index"
   get "ar_exercise/show"
+  get "ar_exercise/answer"
+  get "ar_exercise/cooperation_index"
+  get "ar_exercise/cooperate"
+  get "ar_exercise/answered"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

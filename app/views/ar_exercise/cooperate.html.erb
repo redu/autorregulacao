@@ -1,0 +1,35 @@
+    <%= render :partial => 'ar_exercise/coop_nav' %>
+    <%= link_to "< Voltar para a listagem de cooperações", "/ar_exercise/cooperation_index" %>
+
+    <p>
+      Um móvel realiza um movimento circular e uniforme, com velocidade de 5 m/s. Sendo a aceleração centrípeta igual a 10 m/s2, determine o raio de sua trajetória.
+    </p>
+    <%= image_tag 'holder.js/640x120' %>
+
+    <h4>Anônimo 1</h4>
+
+    <h5><%= t('Resposta inicial') %></h5>
+    <blockquote>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </blockquote>
+
+    <h5><%= t('O que ele acha que fez mal?') %></h5>
+    <blockquote>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </blockquote>
+
+    <h5><%= t('Por que ele acha que fez mal?') %></h5>
+    <blockquote>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </blockquote>
+
+    <%= form_tag '/', method: :post do %>
+      <%= label_tag :justification, t('Está bem justificado? Explique') %>
+      <%= text_area_tag :justification %>
+
+      <%= label_tag :recommendation, t('O que você recomenda?') %>
+      <%= text_area_tag :recommendation %>
+
+      <%= link_to "Voltar", "/ar_exercise/cooperation_index", class: 'button button-danger button-big' %>
+      <%= button_tag t('Cooperar'), class: 'button-primary button-big' %>
+    <% end %>
