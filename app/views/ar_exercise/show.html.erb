@@ -1,33 +1,44 @@
 <%= render :partial => 'ar_exercise/admin_nav' %>
-<%= link_to "< Retornar a listagem", '/ar_exercise/index' %>
+<div class="history-actions">
+  <%= link_to "< Retornar a listagem", '/ar_exercise/index' %>
+</div>
 
 <h3>O que você aprendeu?</h3>
 <%= render :partial => 'ar_exercise/statement' %>
 
 <% 1.upto(3) do |i| %>
-  <h4><%= t("Anônimo #{i}") %></h4>
-  <h5><em><%= t('Resposta inicial') %></em></h5>
-  <p>
-    Lipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  </p>
-  <h5><em><%= t('O que fiz mal?') %></em></h5>
-  <p>
-    Lipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  </p>
-  <h5><em><%= t('Por que fiz mal?') %></em></h5>
-  <p>
-    Lipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  </p>
+  <h4 class="answer-author"><%= t("Anônimo #{i}") %></h4>
+  <div class="answer-review">
+    <h5><%= t('Resposta inicial') %></h5>
+    <blockquote>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </blockquote>
 
-  <div class="span9 offset1">
-    <h6><%= t("Cooperador #{i+1}") %></h6>
-    <em><%= t('Está bem justificado?') %></em>
-    <p>
-      Lipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    </p>
-    <em><%= t('Recomendações') %></em>
-    <p>
-      Lipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    </p>
+    <h5><%= t('O que ele errou') %></h5>
+    <blockquote>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </blockquote>
+
+    <h5><%= t('Por que ele acha que errou mal?') %></h5>
+    <blockquote>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </blockquote>
   </div>
+
+  <%= 1.upto(2) do |i| %>
+    <div class="span10 offset1">
+      <h6 class="answer-author"><%= t("Cooperador #{i}") %></h6>
+      <p>
+        <strong>Está bem justificado?</strong> <br />
+        <em>Lorem ipsum dolor sit amet, consectetur adipisicing eli</em>
+      </p>
+
+      <p>
+        <strong>Recomendaçãoes:</strong> <br />
+        <em>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</em>
+      </p>
+      <hr class="list-separator" />
+    </div>
+  <% end %>
+
 <% end %>

@@ -1,32 +1,44 @@
-<%= render :partial => 'ar_exercise/coop_nav' %>
 
+<%= render :partial => 'ar_exercise/coop_nav' %>
+<div class="message-block message-info">
+  <a data-dismiss="alert" class="message-close">×</a>
+  <div class="message-block-content">
+    <p>
+      <strong>Olá,</strong>
+      Esta questão pertence a um exercício cooperativo anônimo. Aqui você pode refletir sobre os assuntos mostrados em sala de aula e ajudar seus colegas a aprender melhor. Nestes exercícios sua identidade não sera divulgada, portanto seja sincero e aproveite!
+    </p>
+  </div>
+</div>
 <%= render :partial => 'ar_exercise/statement' %>
 
 <%= form_tag '/', method: :post do %>
+  <p class="instructions">
+    Utilize os campos abaixo para responder e refletir a respeito do questionamento levantado. Seja sincero e, lembre-se, você permanecerá anônimo ao responder.
+  </p>
   <div class="control-group">
     <div class="control-label">
-      <%= label_tag :preliminar_answer, t('Minha resposta inicial') %>
+      <%= label_tag :preliminar_answer, t('Sua resposta inicial') %>
     </div>
     <div class="control">
-      <%= text_area_tag :preliminar_answer %>
+      <%= text_area_tag :preliminar_answer, nil, placeholder: 'Descreva aqui como você achava que a questão deveria ser resolvida antes da correção do professor' %>
     </div>
   </div>
 
   <div class="control-group">
     <div class="control-label">
-      <%= label_tag :evaluation_answer, t('O que fiz mal?') %>
+      <%= label_tag :evaluation_answer, t('Onde você errou?') %>
     </div>
     <div class="control">
-      <%= text_area_tag :evaluation_answer %>
+      <%= text_area_tag :evaluation_answer, nil, placeholder: 'Após da correção sua resposta estava incorreta? Explique o que você errou.' %>
     </div>
   </div>
 
   <div class="control-group">
     <div class="control-label">
-      <%= label_tag :justification_answer, t('Por que fiz mal?') %>
+      <%= label_tag :justification_answer, t('Por que você errou?') %>
     </div>
     <div class="control">
-      <%= text_area_tag :justification_answer %>
+      <%= text_area_tag :justification_answer, nil, placeholder: 'Na sua opinião, o que levou você ao erro? Houve algum assunto mal compreendido?' %>
     </div>
   </div>
 

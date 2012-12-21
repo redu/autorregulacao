@@ -1,21 +1,21 @@
 <%= render :partial => 'ar_exercise/coop_nav' %>
 
-<p>
+<p class="instructions">
   Ajude seus colegas a entender melhor as dificuldades enfrentadas na compreensão do assunto dado em sala. Escolha uma das pessoas abaixo para começar a cooperar:
 </p>
 
 <table class="table-with-borderradius">
   <thead>
-    <th><%= t('Nome do exercício') %></th>
+    <th width="40%"><%= t('Nome do exercício') %></th>
     <th><%= t('Criado em') %></th>
     <th><%= t('Eu já ajudei?') %></th>
-    <th><%= t('Quantidade de respostas') %></th>
+    <th><%= t('Respostas') %></th>
   </thead>
   <tbody>
     <% 3.times do |i| %>
       <tr>
         <td><%= link_to "O que você aprendeu?", '/ar_exercise/cooperate' %></td>
-        <td><%= t(Date.today) %></td>
+        <td><%= l(Date.today) %></td>
         <td>
           <% if i.even? %>
             <span class="label-notify-me"><%= t('Não') %></span>

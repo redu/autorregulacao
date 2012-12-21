@@ -1,33 +1,40 @@
     <%= render :partial => 'ar_exercise/coop_nav' %>
-    <%= link_to "< Voltar para a listagem de cooperações", "/ar_exercise/cooperation_index" %>
-
+    <div class="history-actions">
+      <%= link_to "< Voltar para a listagem de cooperações", "/ar_exercise/cooperation_index" %>
+    </div>
+    <%= render 'shared/message_info', :message => "aqui você poderá auxiliar um colega a aprender mais e melhor. Analise as respostas e reflexões dele e tente ajuda-lo. Lembre-se sua identidade não será revelada." %>
     <%= render :partial => 'ar_exercise/statement' %>
 
-    <h4>Anônimo 1</h4>
+    <h4 class="answer-author">Anônimo 1</h4>
 
-    <h5><%= t('Resposta inicial') %></h5>
-    <blockquote>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </blockquote>
+    <div class="answer-review">
+      <h5><%= t('Resposta inicial') %></h5>
+      <blockquote>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      </blockquote>
 
-    <h5><%= t('O que ele acha que fez mal?') %></h5>
-    <blockquote>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </blockquote>
+      <h5><%= t('O que ele errou') %></h5>
+      <blockquote>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      </blockquote>
 
-    <h5><%= t('Por que ele acha que fez mal?') %></h5>
-    <blockquote>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </blockquote>
+      <h5><%= t('Por que ele acha que errou mal?') %></h5>
+      <blockquote>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      </blockquote>
+    </div>
 
     <%= form_tag '/', method: :post do %>
+      <p class="instructions">
+        Após ler atentamente as respostas do seu colega, responda o questionário abaixo.
+      </p>
       <div class="control-group">
         <div class="control-group">
           <div class="control-label">
             <%= label_tag :justification, t('Está bem justificado? Explique') %>
           </div>
           <div class="control">
-            <%= text_area_tag :justification %>
+            <%= text_area_tag :justification, nil, placeholder: 'Na sua opinião, o colega justificou bem as dificuldades?' %>
           </div>
         </div>
       </div>
@@ -37,12 +44,12 @@
           <%= label_tag :recommendation, t('O que você recomenda?') %>
         </div>
         <div class="control">
-          <%= text_area_tag :recommendation %>
+          <%= text_area_tag :recommendation, nil, placeholder: 'Você tem alguma dica para ajudar o colega? Talvez algum material ou exercício.' %>
         </div>
       </div>
 
       <div class="form-actions">
         <%= link_to "Voltar", "/ar_exercise/cooperation_index", class: 'button button-danger button-big' %>
-        <%= button_tag t('Cooperar'), class: 'button-primary button-big' %>
+        <%= button_tag t('Responder'), class: 'button-primary button-big' %>
       </div>
     <% end %>

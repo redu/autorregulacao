@@ -1,21 +1,33 @@
 <%= render :partial => 'ar_exercise/admin_nav' %>
-<p class="span11">Estes são os exercícios autorrgurlatórios criados para esta disciplina. Clique no nome do exercício para avalia-lo individualmente.</p>
+<%= render 'shared/message_info', :message => "estes são os exercícios autorrgurlatórios criados para esta disciplina. Clique no nome da questão para avalia-la individualmente.", :greeting => "Olá," %>
 
-<table class="table-with-borderradius">
-  <thead>
-    <th><%= t('Nome do exercício') %></th>
-    <th><%= t('Criado em') %></th>
-    <th><%= t('Última resposta em') %></th>
-    <th><%= t('Quantidade de respostas') %></th>
-  </thead>
-  <tbody>
-    <% 3.times do %>
-      <tr>
-        <td><%= link_to "O que você aprendeu?", '/ar_exercise/show' %></td>
-        <td><%= t(Date.today) %></td>
-        <td><%= t(Date.today) %></td>
-        <td>12</td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% 1.upto(3) do |i| %>
+  <div class="ar-exercise">
+    <h4 class="ar-exercise-title">Exercício <%= i %></h4>
+    <div class="ar-exercise-actions">
+      <%= link_to "Enviar por e-mail", "#", class: 'button-default' %>
+      <%= link_to "Imprimir", "#", class: 'button-default' %>
+    </div>
+    <table class="table-with-borderradius table-with-link">
+      <thead>
+        <th width="20px">#</th>
+        <th width="40%"><%= t('Questão') %></th>
+        <th><%= t('Criado em') %></th>
+        <th><%= t('Última resposta em') %></th>
+        <th><%= t('Respostas') %></th>
+      </thead>
+      <tbody>
+        <% 1.upto(3) do |i| %>
+          <tr class="link-container">
+            <td><%= i %></td>
+            <td><%= link_to "O que você aprendeu?", '/ar_exercise/show', class: 'link-target' %></td>
+            <td><%= l(Date.today) %></td>
+            <td><%= l(Date.today) %></td>
+            <td>12</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <hr class="list-separator" />
+<% end %>
