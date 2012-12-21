@@ -2,10 +2,7 @@
 <%= link_to "< Retornar a listagem", '/ar_exercise/index' %>
 
 <h3>O que você aprendeu?</h3>
-<p>
-  Um móvel realiza um movimento circular e uniforme, com velocidade de 5 m/s. Sendo a aceleração centrípeta igual a 10 m/s2, determine o raio de sua trajetória.
-</p>
-<%= image_tag 'holder.js/640x120' %>
+<%= render :partial => 'ar_exercise/statement' %>
 
 <% 1.upto(3) do |i| %>
   <h4><%= t("Anônimo #{i}") %></h4>
