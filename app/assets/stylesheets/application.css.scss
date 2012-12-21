@@ -40,3 +40,22 @@
     background: url('lecture-background.png') no-repeat -75px 0;
   }
 }
+
+.cooperation-nav, .admin-nav {
+  margin-bottom: 40px;
+}
+
+.statement {
+  line-height: 140%;
+  margin-bottom: 20px;
+
+  p { margin: 5px 0 10px 0; }
+  img { margin: 5px 0 10px 0; }
+}
+
+// Forms
+
+.form-actions {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
