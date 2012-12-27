@@ -1,12 +1,4 @@
 Autoregulation::Application.routes.draw do
-  get "ar_exercise/new"
-  get "ar_exercise/index"
-  get "ar_exercise/show"
-  get "ar_exercise/answer"
-  get "ar_exercise/cooperation_index"
-  get "ar_exercise/cooperate"
-  get "ar_exercise/answered"
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -62,5 +54,5 @@ Autoregulation::Application.routes.draw do
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id))(.:format)'
+  match ':controller(/:action(/:id))(.:format)'
 end

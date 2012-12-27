@@ -1,5 +1,5 @@
 
-<%= render :partial => 'ar_exercise/coop_nav' %>
+<%= render :partial => 'prototype/coop_nav' %>
 <div class="message-block message-info">
   <a data-dismiss="alert" class="message-close">×</a>
   <div class="message-block-content">
@@ -9,7 +9,7 @@
     </p>
   </div>
 </div>
-<%= render :partial => 'ar_exercise/statement' %>
+<%= render :partial => 'prototype/statement' %>
 
 <%= form_tag '/', method: :post do %>
   <p class="instructions">
@@ -43,6 +43,6 @@
   </div>
 
   <div class="form-actions">
-    <%= link_to t('Responder'), '/ar_exercise/answered', class: 'button-primary button-big' %>
+    <%= link_to t('Responder'), '/prototype/answered', class: 'button-primary button-big' %>
   </div>
 <% end %>

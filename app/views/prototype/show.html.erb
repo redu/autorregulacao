@@ -1,10 +1,10 @@
-<%= render :partial => 'ar_exercise/admin_nav' %>
+<%= render :partial => 'prototype/admin_nav' %>
 <div class="history-actions">
-  <%= link_to "< Retornar a listagem", '/ar_exercise/index' %>
+  <%= link_to "< Retornar a listagem", '/prototype/index' %>
 </div>
 
 <h3>O que você aprendeu?</h3>
-<%= render :partial => 'ar_exercise/statement' %>
+<%= render :partial => 'prototype/statement' %>
 
 <% 1.upto(3) do |i| %>
   <h4 class="answer-author"><%= t("Anônimo #{i}") %></h4>

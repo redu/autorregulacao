@@ -1,9 +1,9 @@
-    <%= render :partial => 'ar_exercise/coop_nav' %>
+    <%= render :partial => 'prototype/coop_nav' %>
     <div class="history-actions">
-      <%= link_to "< Voltar para a listagem de cooperações", "/ar_exercise/cooperation_index" %>
+      <%= link_to "< Voltar para a listagem de cooperações", "/prototype/cooperation_index" %>
     </div>
     <%= render 'shared/message_info', :message => "aqui você poderá auxiliar um colega a aprender mais e melhor. Analise as respostas e reflexões dele e tente ajuda-lo. Lembre-se sua identidade não será revelada." %>
-    <%= render :partial => 'ar_exercise/statement' %>
+    <%= render :partial => 'prototype/statement' %>
 
     <h4 class="answer-author">Anônimo 1</h4>
 
@@ -49,7 +49,7 @@
       </div>
 
       <div class="form-actions">
-        <%= link_to "Voltar", "/ar_exercise/cooperation_index", class: 'button button-danger button-big' %>
+        <%= link_to "Voltar", "/prototype/cooperation_index", class: 'button button-danger button-big' %>
         <%= button_tag t('Responder'), class: 'button-primary button-big' %>
       </div>
     <% end %>

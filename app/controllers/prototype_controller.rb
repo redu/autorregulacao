@@ -1,4 +1,4 @@
-class ArExerciseController < ApplicationController
+class PrototypeController < ApplicationController
   respond_to :html
 
   def new

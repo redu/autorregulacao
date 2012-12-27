@@ -1,4 +1,4 @@
-<%= render :partial => 'ar_exercise/admin_nav' %>
+<%= render :partial => 'prototype/admin_nav' %>
 <%= render 'shared/message_info', :message => "estes são os exercícios autorrgurlatórios criados para esta disciplina. Clique no nome da questão para avalia-la individualmente.", :greeting => "Olá," %>
 
 <% 1.upto(3) do |i| %>
@@ -20,7 +20,7 @@
         <% 1.upto(3) do |i| %>
           <tr class="link-container">
             <td><%= i %></td>
-            <td><%= link_to "O que você aprendeu?", '/ar_exercise/show', class: 'link-target' %></td>
+            <td><%= link_to "O que você aprendeu?", '/prototype/show', class: 'link-target' %></td>
             <td><%= l(Date.today) %></td>
             <td><%= l(Date.today) %></td>
             <td>12</td>

@@ -1,4 +1,4 @@
-<%= render :partial => 'ar_exercise/coop_nav' %>
+<%= render :partial => 'prototype/coop_nav' %>
 
 <p class="instructions">
   Ajude seus colegas a entender melhor as dificuldades enfrentadas na compreensão do assunto dado em sala. Escolha uma das pessoas abaixo para começar a cooperar:
@@ -14,7 +14,7 @@
   <tbody>
     <% 3.times do |i| %>
       <tr>
-        <td><%= link_to "O que você aprendeu?", '/ar_exercise/cooperate' %></td>
+        <td><%= link_to "O que você aprendeu?", '/prototype/cooperate' %></td>
         <td><%= l(Date.today) %></td>
         <td>
           <% if i.even? %>
