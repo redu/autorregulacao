@@ -1,7 +1,9 @@
-class SessionsController < ApplicationController
+class SessionsController < BaseController
   respond_to :html, :json
+
   def create
-    @user ||=  User.create_with_omniauth(auth_hash)
+    @user = User.find_by_uid(auth_hash['uid']) ||
+      User.create_with_omniauth(auth_hash)
 
     session[:user_id] = @user.id
 

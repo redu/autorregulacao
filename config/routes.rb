@@ -1,5 +1,6 @@
 Autoregulation::Application.routes.draw do
   match '/auth/:provider/callback', :to => 'sessions#create'
+  match '/auth/:provider', :to => 'sessions#create', as: :create_session
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
