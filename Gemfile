@@ -2,7 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.9'
 gem 'sqlite3'
-gem 'omniauth-redu', :git => 'git://github.com/redu/omniauth-redu.git'
+gem 'omniauth-redu', git: 'git://github.com/redu/omniauth-redu.git'
+gem 'factory_girl_rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
