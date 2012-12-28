@@ -1,4 +1,25 @@
 <%= render :partial => 'prototype/coop_nav' %>
 <%= render 'questions/instructions' %>
-<%= render 'questions/statement', question: @question %>
-<%= render 'answers/form' %>
+<%= render 'questions/statement', question: @question_service.question %>
+<% if @question_service.answered? %>
+  <% answer = @question_service.answer %>
+  <h4 class="answer-author">Você respondeu:</h4>
+  <div class="answer-review">
+    <h5><%= t('Sua resposta inicial') %></h5>
+    <blockquote>
+      <p><%= answer.initial %></p>
+    </blockquote>
+
+    <h5><%= t('Onde você errou?') %></h5>
+    <blockquote>
+      <p><%= answer.rationale %></p>
+    </blockquote>
+
+    <h5><%= t('Por que errou?') %></h5>
+    <blockquote>
+      <%= answer.reflection %>
+    </blockquote>
+  </div>
+<% else %>
+  <%= render 'answers/form', answer: @question_service.answer_form %>
+<% end %>

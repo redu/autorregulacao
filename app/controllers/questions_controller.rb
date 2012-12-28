@@ -2,9 +2,10 @@ class QuestionsController < ApplicationController
   respond_to :html
 
   def show
-    @question = Question.find(params[:id])
-    @answer = AnswerForm.new(question_id: @question.id, user_id: current_user.id)
+    question = Question.find(params[:id])
+    @question_service = QuestionService.new(user: current_user, question: question)
+    @answer_form = @question_service.answer_form
 
-    respond_with(@question)
+    respond_with(@question_service)
   end
 end
