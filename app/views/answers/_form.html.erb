@@ -1,0 +1,31 @@
+<%= f.hidden_field :user_id %>
+<%= f.hidden_field :question_id %>
+<div class="control-group">
+  <div class="control-label">
+    <%= f.label :initial, t('Sua resposta inicial') %>
+  </div>
+  <div class="control">
+    <%= f.text_area :initial, placeholder: 'Descreva aqui como você achava que a questão deveria ser resolvida antes da correção do professor', rows: 3 %>
+    <%= concave_errors_for(f.object, :initial) %>
+  </div>
+</div>
+
+<div class="control-group">
+  <div class="control-label">
+    <%= f.label :rationale, t('Onde você errou?') %>
+  </div>
+  <div class="control">
+    <%= f.text_area :rationale, placeholder: 'Após da correção sua resposta estava incorreta? Explique o que você errou.', rows: 3 %>
+    <%= concave_errors_for(f.object, :rationale) %>
+  </div>
+</div>
+
+<div class="control-group">
+  <div class="control-label">
+    <%= f.label :reflection, t('Por que você errou?') %>
+  </div>
+  <div class="control">
+    <%= f.text_area :reflection, placeholder: 'Na sua opinião, o que levou você ao erro? Houve algum assunto mal compreendido?', rows: 3 %>
+    <%= concave_errors_for(f.object, :reflection) %>
+  </div>
+</div>

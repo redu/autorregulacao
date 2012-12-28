@@ -1,0 +1,24 @@
+
+<%= render :partial => 'prototype/coop_nav' %>
+<div class="message-block message-info">
+  <a data-dismiss="alert" class="message-close">×</a>
+  <div class="message-block-content">
+    <p>
+      <strong>Olá,</strong>
+      Esta questão pertence a um exercício cooperativo anônimo. Aqui você pode refletir sobre os assuntos mostrados em sala de aula e ajudar seus colegas a aprender melhor. Nestes exercícios sua identidade não sera divulgada, portanto seja sincero e aproveite!
+    </p>
+  </div>
+</div>
+<%= render :partial => 'prototype/statement' %>
+
+<%= form_for @answer, url: question_answers_path(@answer.question_id), method: :post do |f| %>
+  <p class="instructions">
+    Utilize os campos abaixo para responder e refletir a respeito do questionamento levantado. Seja sincero e, lembre-se, você permanecerá anônimo ao responder.
+  </p>
+
+  <%= render 'answers/form', f: f %>
+
+  <div class="form-actions">
+    <%= f.button t('Responder'), class: 'button-primary button-big' %>
+  </div>
+<% end %>
