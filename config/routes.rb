@@ -2,6 +2,10 @@ Autoregulation::Application.routes.draw do
   match '/auth/:provider/callback', :to => 'sessions#create'
   match '/auth/:provider', :to => 'sessions#create', as: :create_session
 
+  resources :questions, only: [:show] do
+    resources :answers, only: [:new, :create]
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
