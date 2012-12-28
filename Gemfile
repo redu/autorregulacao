@@ -4,6 +4,7 @@ gem 'rails', '3.2.9'
 gem 'sqlite3'
 gem 'omniauth-redu', git: 'git://github.com/redu/omniauth-redu.git'
 gem 'factory_girl_rails'
+gem 'virtus'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -37,4 +38,4 @@ end
 # gem 'capistrano'
 
 # To use debugger
-# gem 'debugger'
+gem 'debugger'
