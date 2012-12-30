@@ -1,9 +1,6 @@
 require 'spec_helper'
 
 describe QuestionService do
-  subject do
-  end
-
   it "should be initialized by a User and Question" do
     QuestionService.new(question: Question.new, user: User.new).should
       be_a QuestionService
