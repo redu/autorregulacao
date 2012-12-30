@@ -9,8 +9,8 @@ class AnswersController < BaseController
     if answer_form.save
       redirect_to question_path(question)
     else
-      @question_service = QuestionService.new(user: current_user, question: question,
-                                              answer_form: answer_form)
+      @question_service = QuestionService.
+        new(user: current_user, question: question, answer_form: answer_form)
       render 'questions/show'
     end
   end

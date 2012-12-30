@@ -21,6 +21,13 @@ describe 'Answering question', type: :feature do
     end
   end
 
+  it "shows the link to the answers list" do
+    visit "/questions/#{question.id}"
+
+    expect(page).to have_selector "a[href='/question/#{question.id}/answers'"
+
+  end
+
   it "rerenders the answering form when there are validation errors" do
     visit "/questions/#{question.id}"
 
