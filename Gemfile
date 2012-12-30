@@ -23,6 +23,7 @@ gem 'jquery-rails'
 group :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
+  gem 'capybara'
 end
 
 # To use ActiveModel has_secure_password
