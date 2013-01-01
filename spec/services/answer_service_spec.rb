@@ -17,41 +17,41 @@ describe AnswerService do
     end
   end
 
-  context "#open? with answer.user != nil" do
+  context "#cooperated? with answer.user != nil" do
     let(:answer) { FactoryGirl.create(:complete_answer) }
     let(:user) { FactoryGirl.create(:user) }
     subject do
       AnswerService.new(answer: answer, user: user)
     end
 
-    it "should return false if the user answered" do
+    it "should return true if the user cooperated" do
       answer.cooperations.first.update_attribute(:user_id, user.id)
-      subject.open?.should_not be
+      subject.cooperated?.should be
     end
 
-    it "should return true if the user didn't answer" do
-      subject.open?.should be
+    it "should return false if the user didn't cooperate" do
+      subject.cooperated?.should_not be
     end
   end
 
-  context "#open? with answer.user == nil" do
+  context "#cooperated? with answer.user == nil" do
     let(:answer) { FactoryGirl.create(:complete_answer) }
     let(:user) { nil }
     subject do
       AnswerService.new(answer: answer, user: user)
     end
 
-    it "should return false if someone answered" do
-      subject.open?.should_not be
+    it "should return false if someone cooperate" do
+      subject.cooperated?.should_not be
     end
 
-    it "should return true if anyone answered" do
+    it "should return false if anyone cooperate" do
       answer_with_no_cooperations = \
         FactoryGirl.create(:complete_answer, cooperations_count: 0)
       subject = AnswerService.
         new(answer: answer_with_no_cooperations, user: user)
 
-      subject.open?.should be
+      subject.cooperated?.should_not be
     end
   end
 end

@@ -20,10 +20,10 @@
           <td class="initial"><%= link_to answer.initial.truncate(40), answer_path(answer) %></td>
           <td class="created-at"><%= l(answer.created_at, format: :short) %></td>
           <td class="status">
-            <% if service.open? %>
-              <span class="label-notify-me"><%= t('Não') %></span>
+            <% if service.cooperated? %>
+              <span class="label-notify-me"><%= t('Sim') %></span>
             <% else %>
-              <span class="label-online"><%= t('Sim') %></span>
+              <span class="label-online"><%= t('Não') %></span>
             <% end %>
           </td>
           <td class="status-cooperations"><%= answer.cooperations.count %></td>

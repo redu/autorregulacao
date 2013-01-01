@@ -4,10 +4,11 @@ class AnswerService
   attribute :user, User
   attribute :answer, Answer
 
-  # Returns true the user didn't answer. If there is no user specified, it returns
+  # Returns true the user answered. If there is no user specified, it returns
   # true if anyone answered.
-  def open?
-    !scoped_cooperations.exists?
+  def cooperated?
+    return false unless user
+    scoped_cooperations.exists?
   end
 
   protected
