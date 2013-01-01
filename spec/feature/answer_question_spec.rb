@@ -1,7 +1,7 @@
 # encoding: UTF-8
 require 'spec_helper'
 
-describe 'Answering question', type: :feature do
+feature 'Answering question' do
   let(:user) do
     FactoryGirl.create(:user)
   end
@@ -13,45 +13,47 @@ describe 'Answering question', type: :feature do
     BaseController.any_instance.stub(:current_user).and_return(user)
   end
 
-  it "shows the answering form" do
+  scenario "user vists the question page" do
     visit "/questions/#{question.id}"
 
     %w(user_id question_id initial rationale reflection).each do |attr|
       expect(page).to have_selector "[name='answer_form[#{attr}]']"
     end
-  end
-
-  it "shows the link to the answers list" do
-    visit "/questions/#{question.id}"
-
     expect(page).to have_selector "a[href='/questions/#{question.id}/answers']"
   end
 
-  it "rerenders the answering form when there are validation errors" do
+  scenario "user answers the question with invalid data" do
     visit "/questions/#{question.id}"
 
-    within('form') do
-      fill_in 'answer_form[initial]', with: ''
-      fill_in 'answer_form[rationale]', with: ''
-      fill_in 'answer_form[reflection]', with: ''
-    end
-    click_button 'Responder'
+    answer_question!('', '', '')
 
     expect(page).to have_content 'não pode ficar em branco'
   end
 
-  it "shows the answers once answered" do
+  scenario "user answers the question" do
     visit "/questions/#{question.id}"
-    within('form') do
-      fill_in 'answer_form[initial]', with: 'Lorem 1'
-      fill_in 'answer_form[rationale]', with: 'Lorem 2'
-      fill_in 'answer_form[reflection]', with: 'Lorem 3'
-    end
-    click_button 'Responder'
+
+    answer_question!
 
     expect(page).to have_content 'Lorem 1'
     expect(page).to have_content 'Lorem 2'
     expect(page).to have_content 'Lorem 3'
   end
 
+  scenario "user visits a question already answered by him" do
+    visit "/questions/#{question.id}"
+
+    answer_question!
+
+    expect(page).to_not have_selector('form')
+  end
+
+  def answer_question!(initial='Lorem 1', rationale='Lorem 2', reflection='Lorem 3')
+    within('form') do
+      fill_in 'answer_form[initial]', with: initial
+      fill_in 'answer_form[rationale]', with: rationale
+      fill_in 'answer_form[reflection]', with: reflection
+    end
+    click_button 'Responder'
+  end
 end

@@ -21,4 +21,8 @@ class AnswersController < BaseController
 
     respond_with(@question_service)
   end
+
+  def show
+
+  end
 end
