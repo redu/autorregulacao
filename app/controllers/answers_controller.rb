@@ -14,4 +14,11 @@ class AnswersController < BaseController
       render 'questions/show'
     end
   end
+
+  def index
+    question = Question.find(params[:question_id])
+    @question_service = QuestionService.new(user: current_user, question: question)
+
+    respond_with(@question_service)
+  end
 end

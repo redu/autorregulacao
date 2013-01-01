@@ -83,4 +83,47 @@ describe QuestionService do
       subject.answer.should be_nil
     end
   end
+
+  context "#answers" do
+    let(:user) { FactoryGirl.create(:user) }
+    let(:question) { FactoryGirl.create(:question) }
+    subject do
+      QuestionService.new(question: question, user: user)
+    end
+
+    it "should return a list of answers" do
+      FactoryGirl.create(:complete_answer, cooperations_count: 0, question: question)
+      subject.answers.count.should == 1
+    end
+
+    it "should not include user answer" do
+      a = FactoryGirl.create(:complete_answer, cooperations_count: 0,
+                             question: question, user: user)
+      subject.answers.should_not include a
+    end
+  end
+
+  context "#answer_services" do
+    let(:user) { FactoryGirl.create(:user) }
+    let(:question) { FactoryGirl.create(:question) }
+    subject do
+      QuestionService.new(question: question, user: user)
+    end
+
+    it "should yield an answer service instance" do
+      FactoryGirl.create(:complete_answer, cooperations_count: 0, question: question)
+
+      expect { |block|
+        subject.answer_services(&block)
+      }.to yield_with_args(AnswerService)
+    end
+
+    it "should not yield if there is no answers" do
+      expect { |block|
+        subject.answer_services(&block)
+      }.to_not yield_control
+
+    end
+
+  end
 end

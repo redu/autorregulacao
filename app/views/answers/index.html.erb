@@ -1,0 +1,35 @@
+<%= render 'shared/coop_nav', question_service: @question_service %>
+<p class="instructions">
+  Ajude seus colegas a entender melhor as dificuldades enfrentadas na compreensão do assunto dado em sala. Escolha uma das pessoas abaixo para começar a cooperar:
+</p>
+
+<% if @question_service.answers.count == 0 %>
+  Ainda não há respostas
+<% else %>
+  <table class="table-with-borderradius">
+    <thead>
+      <th width="40%"><%= t('Resposta') %></th>
+      <th><%= t('Criado em') %></th>
+      <th><%= t('Eu já ajudei?') %></th>
+      <th><%= t('Respostas') %></th>
+    </thead>
+    <tbody>
+      <% @question_service.answer_services do |service| %>
+        <% answer = service.answer %>
+        <tr>
+          <td class="initial"><%= link_to answer.initial.truncate(40), answer_path(answer) %></td>
+          <td class="created-at"><%= l(answer.created_at, format: :short) %></td>
+          <td class="status">
+            <% if service.open? %>
+              <span class="label-notify-me"><%= t('Não') %></span>
+            <% else %>
+              <span class="label-online"><%= t('Sim') %></span>
+            <% end %>
+          </td>
+          <td class="status-cooperations"><%= answer.cooperations.count %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+

@@ -1,0 +1,20 @@
+<%#
+    - question_service (QuestionService)
+%>
+<% question = question_service.question %>
+<ul class="tabs cooperation-nav">
+  <% question_show = current_page?(question_path(question)) %>
+  <li class="tab <%= question_show ? 'tab-active' : '' %>">
+    <%= link_to "Responder", question_path(question), class: 'tab-title' %>
+    <% if question_service.answered? %>
+      <span class="tab-sub-title legend">Ver respostas</span>
+    <% end %>
+  </li>
+  <% answer_index = current_page? question_answers_path(question) %>
+  <li class="tab <%= answer_index ? 'tab-active' : '' %>">
+    <%= link_to "Cooperação", question_answers_path(question), class: 'tab-title' %>
+    <% if current_page?('/prototype/cooperate') %>
+      <span class="tab-sub-title legend">Cooperar</span>
+    <% end %>
+  </li>
+</ul>

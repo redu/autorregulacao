@@ -21,4 +21,19 @@ class QuestionService
   def answer
     question.answers.find(:first, conditions: { user_id: user.id })
   end
+
+  # Returns the list of answers for this question. It doesn't include user's
+  # own answer.
+  def answers
+    question.answers.where("answers.user_id != ?", user.id)
+  end
+
+  # Yields to AnswerService instances bounded to each answer and user
+  def answer_services(&block)
+    if block_given?
+      answers.each do |a|
+        yield AnswerService.new(answer: a, user: user)
+      end
+    end
+  end
 end
