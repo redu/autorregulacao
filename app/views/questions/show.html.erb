@@ -1,4 +1,4 @@
-<%= render :partial => 'prototype/coop_nav' %>
+<%= render 'shared/coop_nav', question_service: @question_service %>
 <%= render 'questions/instructions' %>
 <%= render 'questions/statement', question: @question_service.question %>
 <% if @question_service.answered? %>

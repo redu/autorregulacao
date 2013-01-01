@@ -4,7 +4,7 @@
 </p>
 
 <% if @question_service.answers.count == 0 %>
-  Ainda não há respostas
+  <%= render 'shared/message_info', greeting: t('Ops,'), message: t('Esta questão ainda não foi respondida por seus colegas.') %>
 <% else %>
   <table class="table-with-borderradius">
     <thead>

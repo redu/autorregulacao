@@ -1,12 +1,9 @@
 <% greeting ||= "Olá" %>
 <% if message %>
   <div class="message-block message-info">
-    <a data-dismiss="alert" class="message-close">×</a>
     <div class="message-block-content">
-      <p>
         <strong><%= greeting %></strong>
         <%= message %>
-      </p>
     </div>
   </div>
 <% end %>
