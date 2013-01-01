@@ -5,6 +5,7 @@ class SessionsController < BaseController
     @user = User.find_by_uid(auth_hash['uid']) ||
       User.create_with_omniauth(auth_hash)
 
+    Rails.logger.info "Adding #{@user.id} to the session[:user_id]"
     session[:user_id] = @user.id
 
     respond_with(@user)
