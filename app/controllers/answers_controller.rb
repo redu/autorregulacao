@@ -23,6 +23,10 @@ class AnswersController < BaseController
   end
 
   def show
+    answer = Answer.find(params[:id])
+    question = answer.question
+    @question_service = QuestionService.new(user: current_user, question: question)
 
+    respond_with(@question_service)
   end
 end

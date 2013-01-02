@@ -1,0 +1,39 @@
+<%= render 'shared/coop_nav', question_service: @question_service %>
+<%= render 'questions/instructions' %>
+<%= render 'questions/statement', question: @question_service.question %>
+
+<div class="history-actions">
+  <%= link_to "< Voltar para a listagem de cooperações", "/prototype/cooperation_index" %>
+</div>
+<%= render 'shared/message_info', message: t("aqui você poderá auxiliar um colega a aprender mais e melhor. Analise as respostas e reflexões dele e tente ajuda-lo. Lembre-se sua identidade não será revelada.") %>
+<%= render :partial => 'prototype/statement' %>
+
+<% answer = @answer_service.answer %>
+<h4 class="answer-author">Anônimo 1</h4>
+<div class="answer-review">
+  <h5><%= t('Resposta inicial') %></h5>
+  <blockquote>
+    <p><%= answer.initial %></p>
+  </blockquote>
+
+  <h5><%= t('O que ele errou') %></h5>
+  <blockquote>
+    <p><%= answer.rationale %></p>
+  </blockquote>
+
+  <h5><%= t('Por que ele acha que errou?') %></h5>
+  <blockquote>
+    <p><%= answer.reflection %></p>
+  </blockquote>
+</div>
+<% @answer_service.cooperation_services do |service| %>
+  <% cooperation = service.cooperation %>
+  <% if service.state == :cooperate %>
+    <%# form: cooperate  %>
+  <% elsif service.state == :feedback %>
+    <%# render 'cooperations/item', cooperation %>
+    <%# redner 'feedback/form'  %>
+  <% else %>
+    <%#= render cooperations/item %>
+  <% end %>
+<% end %>
