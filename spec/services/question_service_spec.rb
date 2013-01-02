@@ -95,12 +95,6 @@ describe QuestionService do
       FactoryGirl.create(:complete_answer, cooperations_count: 0, question: question)
       subject.answers.count.should == 1
     end
-
-    it "should not include user answer" do
-      a = FactoryGirl.create(:complete_answer, cooperations_count: 0,
-                             question: question, user: user)
-      subject.answers.should_not include a
-    end
   end
 
   context "#answer_services" do
