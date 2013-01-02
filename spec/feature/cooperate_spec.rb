@@ -40,12 +40,4 @@ feature 'Cooperating' do
       end
     end
   end
-
-  context "when there aren't answers" do
-    scenario "user visits the answer index page" do
-      visit "/questions/#{empty_question.id}/answers"
-
-      expect(page).to have_content "Ops, Esta Questão Ainda Não Foi Respondida Por Seus Colegas"
-    end
-  end
 end
