@@ -8,7 +8,7 @@ class SessionsController < BaseController
     Rails.logger.info "Adding #{@user.id} to the session[:user_id]"
     session[:user_id] = @user.id
 
-    respond_with(@user)
+    redirect_to question_path(Question.first)
   end
 
   protected
