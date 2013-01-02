@@ -27,12 +27,15 @@ class QuestionService
     question.answers
   end
 
-  # Yields to AnswerService instances bounded to each answer and user
+  # Yields to AnswerService instances bounded to each answer and user.
+  # It returns a collect of AnswerService if there is no block
   def answer_services(&block)
     if block_given?
-      answers.each do |a|
+      answers.collect do |a|
         yield AnswerService.new(answer: a, user: user)
       end
+    else
+      answers.collect { |a| AnswerService.new(answer: a, user: user) }
     end
   end
 end

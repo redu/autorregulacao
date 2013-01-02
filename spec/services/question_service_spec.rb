@@ -116,8 +116,13 @@ describe QuestionService do
       expect { |block|
         subject.answer_services(&block)
       }.to_not yield_control
-
     end
 
+    it "should return a collection of AnswerService if there isn't a block" do
+      FactoryGirl.create(:complete_answer, cooperations_count: 0, question: question)
+      answer = AnswerService.new(answer: question.answers.first, user: user)
+      subject.answer_services.size.should == 1
+      subject.answer_services.first.should be_a AnswerService
+    end
   end
 end
