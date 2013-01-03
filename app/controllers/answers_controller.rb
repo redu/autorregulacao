@@ -24,8 +24,6 @@ class AnswersController < BaseController
 
   def show
     answer = Answer.find(params[:id])
-    question = answer.question
-    @question_service = QuestionService.new(user: current_user, question: question)
     @answer_service = AnswerService.new(user: current_user, answer: answer)
     @cooperation_form = CooperationForm.new(user_id: current_user.id, answer_id: answer.id)
   end

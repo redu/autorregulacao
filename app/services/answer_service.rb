@@ -15,6 +15,11 @@ class AnswerService
     user == answer.user
   end
 
+  # Returns a QuestionService instance bounded to #answer.question
+  def question_service
+    QuestionService.new(question: answer.question, user: user)
+  end
+
   protected
 
   def scoped_cooperations

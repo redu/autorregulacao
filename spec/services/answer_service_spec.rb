@@ -70,4 +70,28 @@ describe AnswerService do
       subject.cooperated?.should_not be
     end
   end
+
+  context "#question_service" do
+    let(:answer) { mock_model 'Answer' }
+    let(:user) { mock_model 'User' }
+    let(:question_double) { mock_model 'Question' }
+    subject do
+      AnswerService.new(answer: answer, user: user)
+    end
+    before do
+      answer.stub(:question).and_return(question_double)
+    end
+
+    it "returns a instance of question service" do
+      subject.question_service.should be_a QuestionService
+    end
+
+    it "should be bounded to #answer.question" do
+      subject.question_service.question.should == question_double
+    end
+
+    it "should be bounded to #user" do
+      subject.question_service.user.should == user
+    end
+  end
 end
