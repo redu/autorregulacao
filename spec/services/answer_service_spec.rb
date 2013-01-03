@@ -3,7 +3,7 @@ require 'spec_helper'
 describe AnswerService do
   context "#new" do
     it "should accept an user and answer" do
-      AnswerService.new(answer: mock_model('Question'), user: mock_model('User')).
+      AnswerService.new(answer: mock_model('Answer'), user: mock_model('User')).
         should be_a AnswerService
     end
 
