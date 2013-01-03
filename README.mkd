@@ -28,11 +28,16 @@ Os passos para contribuir com a evolução do código, seja para resolução de 
 1. Crie um branch novo
 2. Realize mudanças ou adicione a feature
 3. Faça commit das mudanças e envie-as para o remoto
-4. Faça o pull reques.
+4. Faça o pull request.
 
 Caso existam revisões: realizar novos commits no mesmo branch criado e enviar para o remoto.
 
 Para mais informações sobre como fazer o pull request, consulte [este](https://help.github.com/articles/using-pull-requests) post.
+
+## Créditos
+
+- [Ana Luiza Rolim](mailto:analuizarolim3@gmail.com)
+- [Guilherme Oliveira Cavalcanti](http://github.com/guiocavalcanti)
 
 ## Licença
 
