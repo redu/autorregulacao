@@ -1,7 +1,13 @@
 <%#
     - question_service (QuestionService)
+    - answer_service (AnswerService)
 %>
-<% question = question_service.question %>
+<%
+    question_service ||= nil
+    question = question_service.try(:question)
+    answer_service ||= nil
+    answer = answer_service.try(:answer)
+%>
 <ul class="tabs cooperation-nav">
   <% question_show = current_page?(question_path(question)) %>
   <li class="tab <%= question_show ? 'tab-active' : '' %>">
@@ -10,11 +16,18 @@
       <span class="tab-sub-title legend">Ver respostas</span>
     <% end %>
   </li>
-  <% answer_index = current_page? question_answers_path(question) %>
-  <li class="tab <%= answer_index ? 'tab-active' : '' %>">
-    <%= link_to "Cooperação", question_answers_path(question), class: 'tab-title' %>
-    <% if current_page?('/prototype/cooperate') %>
+  <% if answer && current_page?(answer_path(answer)) %>
+    <li class="tab tab-active">
+      <%= link_to "Cooperação", answer_path(answer), class: 'tab-title' %>
       <span class="tab-sub-title legend">Cooperar</span>
-    <% end %>
-  </li>
+    </li>
+  <% elsif current_page?(question_answers_path(question))  %>
+    <li class="tab tab-active">
+      <%= link_to "Cooperação", question_answers_path(question), class: 'tab-title' %>
+    </li>
+  <% else %>
+    <li class="tab">
+      <%= link_to "Cooperação", question_answers_path(question), class: 'tab-title' %>
+    </li>
+  <% end %>
 </ul>

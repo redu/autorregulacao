@@ -1,4 +1,4 @@
-<%= render 'shared/coop_nav', question_service: @question_service %>
+<%= render 'shared/coop_nav', question_service: @question_service, answer_service: @answer_service %>
 <div class="history-actions">
   <%= link_to "< Voltar para a listagem de cooperações", question_answers_path(@question_service.question) %>
 </div>
