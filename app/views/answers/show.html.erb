@@ -10,22 +10,7 @@
 
 <% answer = @answer_service.answer %>
 <h4 class="answer-author">Anônimo <%= answer.user.id %></h4>
-<div class="answer-review">
-  <h5><%= t('Resposta inicial') %></h5>
-  <blockquote>
-    <p><%= answer.initial %></p>
-  </blockquote>
-
-  <h5><%= t('O que ele errou') %></h5>
-  <blockquote>
-    <p><%= answer.rationale %></p>
-  </blockquote>
-
-  <h5><%= t('Por que ele acha que errou?') %></h5>
-  <blockquote>
-    <p><%= answer.reflection %></p>
-  </blockquote>
-</div>
+<%= render 'answers/item', item: answer %>
 
 <% if @answer_service.initiator? %>
   <div class="offset1">
