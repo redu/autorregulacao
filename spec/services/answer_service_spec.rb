@@ -34,6 +34,22 @@ describe AnswerService do
     end
   end
 
+  context "#initiator?" do
+    let(:answer) { FactoryGirl.build(:answer) }
+    let(:user) { FactoryGirl.create(:user) }
+    subject do
+      AnswerService.new(answer: answer, user: user)
+    end
+    it "should return true if #user is the answer owner" do
+      answer.user = user
+      subject.initiator?.should be
+    end
+
+    it "should return false if #user isn't answer owner" do
+      subject.initiator?.should_not be
+    end
+  end
+
   context "#cooperated? with answer.user == nil" do
     let(:answer) { FactoryGirl.create(:complete_answer) }
     let(:user) { nil }

@@ -1,0 +1,13 @@
+<%= render 'cooperations/item', item: item %>
+<hr class="list-separator" />
+<div class="feedback">
+  <div class="span6 offset4">
+    <h6>Você aceita a recomendação?</h6>
+    <%= form_tag '/', method: :post, class: 'positive-feedback' do %>
+      <%= button_tag t('Sim'), class: 'button-primary' %>
+    <% end %>
+    <%= form_tag '/', method: :post, class: 'negative-feedback' do %>
+      <%= button_tag t('Não'), class: 'button-default' %>
+    <% end %>
+  </div>
+</div>

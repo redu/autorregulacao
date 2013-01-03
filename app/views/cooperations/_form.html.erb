@@ -1,0 +1,33 @@
+<%= form_for cooperation, url: answer_cooperations_path(cooperation.answer), method: :post do |f| %>
+  <p class="instructions">
+    Após ler atentamente as respostas do seu colega, responda o questionário abaixo.
+  </p>
+  <%= f.hidden_field :user_id %>
+  <%= f.hidden_field :answer_id %>
+  <div class="control-group">
+    <div class="control-group">
+      <div class="control-label">
+        <%= f.label :rationale, t('Está bem justificado? Explique') %>
+      </div>
+      <div class="control">
+        <%= f.text_area :rationale, placeholder: 'Na sua opinião, o colega justificou bem as dificuldades?', rows: 3 %>
+        <%= concave_errors_for(f.object, :rationale) %>
+      </div>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <div class="control-label">
+      <%= f.label :recommendation, t('O que você recomenda?') %>
+    </div>
+    <div class="control">
+      <%= f.text_area :recommendation, placeholder: 'Você tem alguma dica para ajudar o colega? Talvez algum material ou exercício.', rows: 3 %>
+      <%= concave_errors_for(f.object, :recommendation) %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= link_to "Voltar", "/prototype/cooperation_index", class: 'button button-danger button-big' %>
+    <%= f.button t('Responder'), class: 'button-primary button-big' %>
+  </div>
+<% end %>

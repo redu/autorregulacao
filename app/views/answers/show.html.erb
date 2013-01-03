@@ -1,15 +1,12 @@
 <%= render 'shared/coop_nav', question_service: @question_service %>
+<div class="history-actions">
+  <%= link_to "< Voltar para a listagem de cooperações", question_answers_path(@question_service.question) %>
+</div>
 <%= render 'questions/instructions' %>
 <%= render 'questions/statement', question: @question_service.question %>
 
-<div class="history-actions">
-  <%= link_to "< Voltar para a listagem de cooperações", "/prototype/cooperation_index" %>
-</div>
-<%= render 'shared/message_info', message: t("aqui você poderá auxiliar um colega a aprender mais e melhor. Analise as respostas e reflexões dele e tente ajuda-lo. Lembre-se sua identidade não será revelada.") %>
-<%= render :partial => 'prototype/statement' %>
-
 <% answer = @answer_service.answer %>
-<h4 class="answer-author">Anônimo 1</h4>
+<h4 class="answer-author">Anônimo <%= answer.user.id %></h4>
 <div class="answer-review">
   <h5><%= t('Resposta inicial') %></h5>
   <blockquote>
@@ -26,14 +23,20 @@
     <p><%= answer.reflection %></p>
   </blockquote>
 </div>
-<% @answer_service.cooperation_services do |service| %>
-  <% cooperation = service.cooperation %>
-  <% if service.state == :cooperate %>
-    <%# form: cooperate  %>
-  <% elsif service.state == :feedback %>
-    <%# render 'cooperations/item', cooperation %>
-    <%# redner 'feedback/form'  %>
+
+<% if @answer_service.initiator? %>
+  <div class="offset1">
+    <% answer.cooperations.each do |cooperation| %>
+      <%= render 'feedbacks/item', item: cooperation %>
+    <% end %>
+  </div>
+<% else %>
+  <% if @answer_service.cooperated? %>
+    <% cooperation = answer.cooperations.find(:first, conditions: { user_id: current_user }) %>
+    <div class="offset1">
+      <%= render 'cooperations/item', item: cooperation %>
+    </div>
   <% else %>
-    <%#= render cooperations/item %>
+    <%= render 'cooperations/form', cooperation: @cooperation_form %>
   <% end %>
 <% end %>

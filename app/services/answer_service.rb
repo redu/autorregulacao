@@ -11,6 +11,10 @@ class AnswerService
     scoped_cooperations.exists?
   end
 
+  def initiator?
+    user == answer.user
+  end
+
   protected
 
   def scoped_cooperations

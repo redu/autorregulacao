@@ -6,7 +6,9 @@ Autoregulation::Application.routes.draw do
     resources :answers, only: [:create, :index]
   end
 
-  resources :answers, only: :show
+  resources :answers, only: :show do
+    resources :cooperations, only: :create
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

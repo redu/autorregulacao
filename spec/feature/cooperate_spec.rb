@@ -40,4 +40,43 @@ feature 'Cooperating' do
       end
     end
   end
+
+  context "when cooperating" do
+    let(:answer) { question.answers.first }
+    scenario "user vistis the answer page" do
+      visit "/answers/#{answer.id}"
+
+      %w(user_id answer_id recommendation rationale).each do |attr|
+        expect(page).to have_selector("[name='cooperation_form[#{attr}]']")
+      end
+    end
+
+    scenario "user cooperates" do
+      visit "/answers/#{answer.id}"
+
+      within('form') do
+        fill_in 'cooperation_form[recommendation]', with: 'Lorem 12'
+        fill_in 'cooperation_form[rationale]', with: 'Lorem 13'
+      end
+      click_button 'Responder'
+
+      expect(page).to have_content 'Lorem 12'
+      expect(page).to have_content 'Lorem 13'
+      expect(page).to_not have_selector '.new_cooperation_form'
+    end
+
+    scenario "user cooperates with invalid data" do
+      visit "/answers/#{answer.id}"
+
+      within('form') do
+        fill_in 'cooperation_form[recommendation]', with: ''
+        fill_in 'cooperation_form[rationale]', with: ''
+      end
+      click_button 'Responder'
+
+      expect(page).to have_content 'não pode ficar em branco'
+    end
+
+    scenario "user go back to Answers#index"
+  end
 end
