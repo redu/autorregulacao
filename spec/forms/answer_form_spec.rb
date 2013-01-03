@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe AnswerForm do
+  it_behaves_like "a form"
   let(:question) { Question.create }
   let(:user) { User.create }
   subject do
@@ -17,26 +18,6 @@ describe AnswerForm do
   end
 
   context "#save" do
-    it "should #persist! if valid" do
-      subject.should_receive(:persist!)
-      subject.save
-    end
-
-    it "should not receive persist if the answer is invalid" do
-      subject.reflection = nil
-      subject.should_not_receive(:persist!)
-      subject.save
-    end
-
-    it "should return true when successful" do
-      subject.save.should be
-    end
-
-    it "should return false when not successful" do
-      subject.reflection = nil
-      subject.save.should_not be
-    end
-
     it "should associate the answer to the user" do
       subject.save
       subject.answer.user.should == user

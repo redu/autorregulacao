@@ -1,9 +1,4 @@
-class AnswerForm
-  include Virtus
-  extend ActiveModel::Naming
-  include ActiveModel::Conversion
-  include ActiveModel::Validations
-
+class AnswerForm < BaseForm
   attr_reader :question, :user, :answer
 
   attribute :question_id, Integer
@@ -17,19 +12,6 @@ class AnswerForm
   validates :initial, presence: true
   validates :rationale, presence: true
   validates :reflection, presence: true
-
-  def persisted?
-    false
-  end
-
-  def save
-    if valid?
-      persist!
-      true
-    else
-      false
-    end
-  end
 
   def persist!
     attrs = { initial: initial, rationale: rationale, reflection: reflection }
