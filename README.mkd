@@ -1,0 +1,43 @@
+## Sobre
+
+Aplicativo de cooperação anônima par a par para a plataforma social educacional [Redu](http://redu.com.br). Ele se comunica com o Redu através da [API REST](http://developers.redu.com.br) e funciona dentro do Canvas.
+
+<img src="https://raw.github.com/redu/autorregulacao/master/screenshot.png">
+
+### Dependências
+
+- Ruby 1.9.3 ([como instalar?](https://rvm.io/))
+
+## Setup
+
+```sh
+work > git clone git@github.com:redu/autorregulacao.git ar
+work > cd ar/
+ar (master) > bundle install
+ar (master) > rake db:setup
+```
+
+Para inicializar o servidor basta executar: ``rails server``.
+
+Altere o arquivo ``config/initializers/omniauth.rb`` colocando seu ``consumer_key`` e ``consumer_secret`` nos devidos lugares. Pronto, sua aplicação Rails está configurada para negociar credenciais.
+
+## Contribuições
+
+Os passos para contribuir com a evolução do código, seja para resolução de issue ou criação de features são os seguintes:
+
+1. Crie um branch novo
+2. Realize mudanças ou adicione a feature
+3. Faça commit das mudanças e envie-as para o remoto
+4. Faça o pull reques.
+
+Caso existam revisões: realizar novos commits no mesmo branch criado e enviar para o remoto.
+
+Para mais informações sobre como fazer o pull request, consulte [este](https://help.github.com/articles/using-pull-requests) post.
+
+## Licença
+
+Atribuição-NãoComercial 3.0 Não Adaptada (CC BY-NC 3.0)
+
+<a href="http://creativecommons.org/licenses/by-nc/3.0/deed.pt_BR" title="by-nc-sa" rel="attachment">
+  <img width="403" height="141" src="http://creativecommons.org.br/wp-content/uploads/2012/08/by-nc-sa.png" class="attachment-900x9999" alt="by-nc-sa" title="by-nc-sa">
+</a>
