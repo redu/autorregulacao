@@ -1,0 +1,36 @@
+<%#
+    accepted (Boolean)
+%>
+
+<%= form_for form, url: cooperation_path(form.cooperation), method: :put do |f| %>
+  <p class="instructions">Para finalizar esta questão você precisa responder as perguntas abaixo:</p>
+  <%= f.hidden_field :user_id %>
+  <%= f.hidden_field :feedback_accepted, value: defined?(accepted) ? accepted : form.feedback_accepted %>
+  <div class="control-group">
+    <div class="control-label">
+      <%= f.label :feedback_statement, ('Você aceita a recomendação? Explique') %>
+    </div>
+    <div class="control">
+      <%= f.text_area :feedback_statement, placeholder: 'Explique como a recomendação do colega foi útil', rows: 2 %>
+      <%= concave_errors_for(f.object, :feedback_statement) %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <div class="control-label">
+      <%= f.label :feedback_reflection, ('Em que este trabalho ajudou?') %>
+    </div>
+    <div class="control">
+      <%= f.text_area :feedback_reflection, placeholder: 'Você possui alguma sugestão de como melhorar este trabalho?', rows: 2 %>
+      <%= concave_errors_for(f.object, :feedback_reflection) %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <% if defined?(accepted) %>
+      <%= f.button t('Finalizar'), class: 'button-primary', id: accepted ? :accept_recommendation : :decline_recommendation %>
+    <% else %>
+      <%= f.button t('Finalizar'), class: 'button-primary', id: form.feedback_accepted? ? :accept_recommendation : :decline_recommendation %>
+    <% end %>
+  </div>
+<% end %>

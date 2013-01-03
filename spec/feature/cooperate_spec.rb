@@ -79,4 +79,54 @@ feature 'Cooperating' do
 
     scenario "user go back to Answers#index"
   end
+
+  context "when feebacking" do
+    let(:answer) do
+      FactoryGirl.create(:complete_answer, cooperations_count: 0) do |answer|
+        answer.cooperations << FactoryGirl.create(:cooperation_with_user)
+      end
+    end
+    let(:question) do
+      FactoryGirl.create(:complete_question, answers_count: 0) do |question|
+        question.answers << answer
+      end
+    end
+    before do
+      BaseController.any_instance.stub(:current_user).and_return(answer.user)
+    end
+    scenario "user visits question page" do
+      visit "/questions/#{question.id}"
+
+      %w(user_id feedback_statement feedback_reflection feedback_accepted).
+        each do |attr|
+          expect(page).to have_selector("[name='feedback_form[#{attr}]']")
+        end
+    end
+
+    scenario "user is able to answer a cooperation" do
+      visit "/questions/#{question.id}"
+
+      within('.positive-feedback-form form') do
+        fill_in 'feedback_form[feedback_statement]', with: 'Lorem feedback statement'
+        fill_in 'feedback_form[feedback_reflection]', with: 'Lorem feedback reflection'
+        click_button 'accept_recommendation'
+      end
+
+      #FIXME this scenario if failing due to missing view
+      expect(page).to have_content 'Lorem feedback statement'
+      expect(page).to have_content 'Lorem feedback reflection'
+    end
+
+    scenario "user feedback cooperation with invalid data" do
+      visit "/questions/#{question.id}"
+
+      within('.positive-feedback-form form') do
+        fill_in 'feedback_form[feedback_statement]', with: ''
+        fill_in 'feedback_form[feedback_reflection]', with: ''
+      end
+      click_button 'accept_recommendation'
+
+      expect(page).to have_content 'não pode ficar em branco'
+    end
+  end
 end

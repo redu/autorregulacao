@@ -12,4 +12,18 @@ class CooperationsController < ApplicationController
       render 'answers/show'
     end
   end
+
+  def update
+    cooperation = Cooperation.find(params[:id])
+    cooperation_service = CooperationService.new(user: current_user, cooperation: cooperation)
+    @feedback_form = cooperation_service.feedback_form
+    @feedback_form.attributes = params[:feedback_form]
+
+    if @feedback_form.save
+      redirect_to answer_path(cooperation.answer)
+    else
+      @answer_service = AnswerService.new(user: current_user, answer: cooperation.answer)
+      render 'answers/show'
+    end
+  end
 end

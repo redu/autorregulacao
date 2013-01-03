@@ -14,8 +14,8 @@
 
 <% if @answer_service.initiator? %>
   <div class="offset1">
-    <% answer.cooperations.each do |cooperation| %>
-      <%= render 'feedbacks/item', item: cooperation %>
+    <% @answer_service.cooperation_services do |cooperation_service| %>
+      <%= render 'feedbacks/item', item: cooperation_service %>
     <% end %>
   </div>
 <% else %>

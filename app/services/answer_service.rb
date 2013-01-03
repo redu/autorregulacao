@@ -20,6 +20,13 @@ class AnswerService
     QuestionService.new(question: answer.question, user: user)
   end
 
+  def cooperation_services(&block)
+    @block = block
+    answer.cooperations.each do |c|
+      @block.call CooperationService.new(cooperation: c, user: user)
+    end
+  end
+
   protected
 
   def scoped_cooperations

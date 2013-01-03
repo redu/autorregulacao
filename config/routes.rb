@@ -10,6 +10,8 @@ Autoregulation::Application.routes.draw do
     resources :cooperations, only: :create
   end
 
+  resources :cooperations, only: :update
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
