@@ -1,6 +1,5 @@
-class AnswersController < BaseController
+class AnswersController < ApplicationController
   respond_to :html
-  layout 'application'
 
   def create
     question = Question.find(params[:question_id])

@@ -1,5 +1,6 @@
-class CooperationsController < BaseController
-  layout 'application'
+class CooperationsController < ApplicationController
+  respond_to :html
+
   def create
     answer = Answer.find(params[:answer_id])
     @answer_service = AnswerService.new(user: current_user, answer: answer)
