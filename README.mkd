@@ -4,6 +4,8 @@ Aplicativo de cooperação anônima par a par para a plataforma social educacion
 
 <img src="https://raw.github.com/redu/autorregulacao/master/screenshot.png">
 
+[![Build Status](https://travis-ci.org/redu/autorregulacao.png)](https://travis-ci.org/redu/autorregulacao)
+
 ### Dependências
 
 - Ruby 1.9.3 ([como instalar?](https://rvm.io/))
