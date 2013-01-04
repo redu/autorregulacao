@@ -8,7 +8,7 @@ class AnswerService
   # true if anyone answered.
   def cooperated?
     return false unless user
-    scoped_cooperations.exists?
+    cooperation != nil
   end
 
   def initiator?
@@ -27,13 +27,7 @@ class AnswerService
     end
   end
 
-  protected
-
-  def scoped_cooperations
-    if user
-      answer.cooperations.where("cooperations.user_id == ?", user)
-    else
-      answer.cooperations
-    end
+  def cooperation
+    answer.cooperations.find(:first, conditions: { user_id: user })
   end
 end

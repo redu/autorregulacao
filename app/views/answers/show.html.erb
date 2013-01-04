@@ -20,9 +20,8 @@
   </div>
 <% else %>
   <% if @answer_service.cooperated? %>
-    <% cooperation = answer.cooperations.find(:first, conditions: { user_id: current_user }) %>
     <div class="offset1">
-      <%= render 'cooperations/item', item: cooperation %>
+      <%= render 'cooperations/item', item: @answer_service.cooperation %>
     </div>
   <% else %>
     <%= render 'cooperations/form', cooperation: @cooperation_form %>
