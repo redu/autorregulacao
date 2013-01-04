@@ -1,5 +1,4 @@
 <%= render 'cooperations/item', item: item.cooperation %>
-<hr class="list-separator" />
 <% unless item.feedback? %>
   <div class="feedback">
     <% if @feedback_form %>
@@ -23,3 +22,4 @@
     <% end %>
   </div>
 <% end %>
+<hr class="list-separator" />

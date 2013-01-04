@@ -112,9 +112,8 @@ feature 'Cooperating' do
         click_button 'accept_recommendation'
       end
 
-      #FIXME this scenario if failing due to missing view
-      expect(page).to have_content 'Lorem feedback statement'
-      expect(page).to have_content 'Lorem feedback reflection'
+      expect(page).to_not have_selector('.positive-feedback-form form')
+      expect(page).to_not have_selector('.negative-feedback-form form')
     end
 
     scenario "user feedback cooperation with invalid data" do
