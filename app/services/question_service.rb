@@ -42,4 +42,16 @@ class QuestionService
       service
     end
   end
+
+  private
+
+  # Returns the answer if it exists
+  def answer
+    question.answers.find(:first, conditions: { user_id: user.id })
+  end
+
+  # Returns the list of answers for this question.
+  def answers
+    question.answers
+  end
 end

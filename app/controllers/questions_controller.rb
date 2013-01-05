@@ -6,7 +6,7 @@ class QuestionsController < ApplicationController
     @question_service = QuestionService.new(user: current_user, question: question)
 
     if @question_service.answered?
-      answer = @question_service.answer
+      answer = question.answers.first(conditions: { user_id: current_user.id })
       @answer_service = AnswerService.new(user: current_user, answer: answer)
       @cooperation_form = CooperationForm.new(user_id: current_user.id, answer_id: answer.id)
       render 'answers/show'

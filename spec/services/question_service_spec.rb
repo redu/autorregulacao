@@ -61,43 +61,6 @@ describe QuestionService do
     end
   end
 
-  context "#answer" do
-    let(:user) do
-      u = mock_model('User')
-      u.stub(:id).and_return(12)
-      u
-    end
-    let(:question) { Question.create }
-    subject do
-      QuestionService.new(question: question, user: user)
-    end
-    it "should return the answer" do
-      answer = question.answers.create do |q|
-        q.user_id = 12
-      end
-
-      subject.answer.should == answer
-    end
-
-    it "should return nil when there is no answer" do
-      subject.answer.should be_nil
-    end
-  end
-
-  context "#answers" do
-    let(:user) { FactoryGirl.create(:user) }
-    let(:question) { FactoryGirl.create(:question) }
-    subject do
-      QuestionService.new(question: question, user: user)
-    end
-
-    it "should return a list of answers" do
-      FactoryGirl.create(:complete_answer, cooperations_count: 0,
-                         question: question)
-      subject.answers.count.should == 1
-    end
-  end
-
   context "#answer_services" do
     let(:user) { FactoryGirl.create(:user) }
     let(:question) { FactoryGirl.create(:question) }
@@ -122,8 +85,8 @@ describe QuestionService do
 
     it "should accept conditions" do
       conditions = ["user_id != ?", user.id]
-      subject.answers.stub(:where).and_return([])
-      subject.answers.should_receive(:where).with(conditions)
+      question.answers.stub(:where).and_return([])
+      question.answers.should_receive(:where).with(conditions)
       subject.answer_services(where: conditions)
     end
 
