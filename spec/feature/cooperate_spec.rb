@@ -22,11 +22,10 @@ feature 'Cooperating' do
 
       expect(page).to_not have_content "Ainda não há respostas"
       answer = question.answers.first.initial.truncate(40)
-      expect(find '.table-with-borderradius tbody' ).to have_content answer
-      expect(find '.table-with-borderradius .status' ).to have_content "Não"
-      expect(find '.table-with-borderradius .status' ).to_not have_content "Sim"
-      expect(find '.table-with-borderradius .status-cooperations' ).
-        to have_content "1"
+      expect(find '.answer-list' ).to have_content answer
+      expect(find '.answer-list' ).to have_content "Responder"
+      expect(find '.answer-list' ).to_not have_content "Respondido"
+      expect(find '.answer-list' ).  to have_content "1"
       question.answers.each do |a|
         expect(page).to have_selector "a[href='/answers/#{a.id}']"
       end

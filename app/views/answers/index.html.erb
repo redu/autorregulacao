@@ -7,30 +7,30 @@
 <% if answer_services.count == 0 %>
   <%= render 'shared/message_info', greeting: t('Ops,'), message: t('Esta questão ainda não foi respondida por seus colegas.') %>
 <% else %>
-  <table class="table-with-borderradius">
-    <thead>
-      <th width="40%"><%= t('Resposta') %></th>
-      <th><%= t('Criado em') %></th>
-      <th><%= t('Eu já ajudei?') %></th>
-      <th><%= t('Respostas') %></th>
-    </thead>
-    <tbody>
-      <% answer_services.each do |service| %>
-        <% answer = service.answer %>
-        <tr>
-          <td class="initial"><%= link_to answer.initial.truncate(40), answer_path(answer) %></td>
-          <td class="created-at"><%= l(answer.created_at, format: :short) %></td>
-          <td class="status">
-            <% if service.cooperated? %>
-              <span class="label-notify-me"><%= t('Sim') %></span>
-            <% else %>
-              <span class="label-online"><%= t('Não') %></span>
-            <% end %>
-          </td>
-          <td class="status-cooperations"><%= answer.cooperations.count %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <div class="list-subject answer-list">
+    <!--
+    <div class="list-subject-header">
+      <h4 class="list-subject-name">Você também pode contribuir com outros colegas</h4>
+    </div>
+    -->
+    <div class="list-subject-body">
+      <ol class="list-button">
+        <% answer_services.each do |service| %>
+          <% answer = service.answer %>
+          <li class="list-button-item link-container">
+            <%= link_to answer.initial.truncate(40), answer_path(answer), class: 'list-button-link link-target icon-exercise-lightblue_16_18-before' %>
+            <div class="list-lecture-info">
+              <% if service.cooperated? %>
+                <span class="label-online" rel="tooltip" data-original-title="Você já cooperou com este colega">Respondido</span>
+              <% else %>
+                <span class="label-notify-me" rel="tooltip" data-original-title="Você ainda não cooperou com este colega">Responder</span>
+              <% end %>
+              <span class="wall-stats icon-wall-gray_16_18-before" rel="tooltip" data-original-title="2000 respostas"><%= answer.cooperations.count %></span>
+            </div>
+          </li>
+        <% end %>
+      </ol>
+    </div>
+  </div>
 <% end %>
 
