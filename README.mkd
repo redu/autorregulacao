@@ -1,10 +1,14 @@
-## Sobre
+## Autorregulação no Redu 
 
 Aplicativo de cooperação anônima par a par para a plataforma social educacional [Redu](http://redu.com.br). Ele se comunica com o Redu através da [API REST](http://developers.redu.com.br) e funciona dentro do Canvas.
 
 <img src="https://raw.github.com/redu/autorregulacao/master/screenshot.png">
 
-[![Build Status](https://travis-ci.org/redu/autorregulacao.png)](https://travis-ci.org/redu/autorregulacao)
+Informações:
+
+- Builds [![Build Status](https://travis-ci.org/redu/autorregulacao.png)](https://travis-ci.org/redu/autorregulacao)
+- Análise estática [![Code climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/redu/autorregulacao)
+- Versão das dependências [![Dependencies](https://gemnasium.com/redu/autorregulacao.png)](https://gemnasium.com/redu/autorregulacao)
 
 ### Dependências
 
