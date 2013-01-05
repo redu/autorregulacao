@@ -3,7 +3,8 @@
   Ajude seus colegas a entender melhor as dificuldades enfrentadas na compreensão do assunto dado em sala. Escolha uma das pessoas abaixo para começar a cooperar:
 </p>
 
-<% if @question_service.answers.count == 0 %>
+<% answer_services = @question_service.answer_services(where: ["user_id != ?", @question_service.user.id]) %>
+<% if answer_services.count == 0 %>
   <%= render 'shared/message_info', greeting: t('Ops,'), message: t('Esta questão ainda não foi respondida por seus colegas.') %>
 <% else %>
   <table class="table-with-borderradius">
@@ -14,7 +15,7 @@
       <th><%= t('Respostas') %></th>
     </thead>
     <tbody>
-      <% @question_service.answer_services do |service| %>
+      <% answer_services.each do |service| %>
         <% answer = service.answer %>
         <tr>
           <td class="initial"><%= link_to answer.initial.truncate(40), answer_path(answer) %></td>

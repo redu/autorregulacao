@@ -118,6 +118,13 @@ describe QuestionService do
       }.to_not yield_control
     end
 
+    it "should accept conditions" do
+      conditions = ["user_id != ?", user.id]
+      subject.answers.stub(:where).and_return([])
+      subject.answers.should_receive(:where).with(conditions)
+      subject.answer_services(where: conditions)
+    end
+
     it "should return a collection of AnswerService if there isn't a block" do
       FactoryGirl.create(:complete_answer, cooperations_count: 0, question: question)
       answer = AnswerService.new(answer: question.answers.first, user: user)

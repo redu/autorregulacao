@@ -28,14 +28,18 @@ class QuestionService
   end
 
   # Yields to AnswerService instances bounded to each answer and user.
-  # It returns a collect of AnswerService if there is no block
-  def answer_services(&block)
-    if block_given?
-      answers.collect do |a|
-        yield AnswerService.new(answer: a, user: user)
-      end
-    else
-      answers.collect { |a| AnswerService.new(answer: a, user: user) }
+  # It returns a collect of AnswerService if there is no block.
+  #
+  # where: conditions passed to the query. Accepts the same option as
+  # ActiveRecord::FinderMethods#where
+  def answer_services(opts={}, &block)
+    conditions = opts.fetch(:where, {})
+
+    block_given = block_given?
+    answers.where(conditions).collect do |a|
+      service = AnswerService.new(answer: a, user: user)
+      yield(service) if block_given
+      service
     end
   end
 end

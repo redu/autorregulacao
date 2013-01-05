@@ -39,6 +39,16 @@ feature 'Cooperating' do
         expect(page).to have_content "Ops, Esta Questão Ainda Não Foi Respondida Por Seus Colegas"
       end
     end
+
+    context "when the only answer is from current user" do
+      scenario "user visits the answer index page" do
+        question.answers.first.update_attribute(:user_id, user.id)
+        visit "/questions/#{question.id}/answers"
+
+        expect(page).to have_content \
+          "Ops, Esta Questão Ainda Não Foi Respondida Por Seus Colegas"
+      end
+    end
   end
 
   context "when cooperating" do
