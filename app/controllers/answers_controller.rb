@@ -26,8 +26,11 @@ class AnswersController < ApplicationController
     @answer_service = AnswerService.new(user: current_user, answer: answer)
     @cooperation_form = CooperationForm.new(user_id: current_user.id, answer_id: answer.id)
 
-    if cooperation = answer.cooperations.find(:first, conditions: { user_id: current_user })
-      @feedback_form = FeedbackForm.new(user_id: current_user.id, cooperation_id: cooperation.id)
+    @cooperation = answer.cooperations.
+      find(:first, conditions: { user_id: current_user })
+    if @cooperation
+      @feedback_form = \
+        FeedbackForm.new(user_id: current_user, cooperation_id: @cooperation)
     end
   end
 end

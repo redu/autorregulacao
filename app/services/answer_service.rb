@@ -27,6 +27,8 @@ class AnswerService
     end
   end
 
+  private
+
   def cooperation
     answer.cooperations.find(:first, conditions: { user_id: user })
   end

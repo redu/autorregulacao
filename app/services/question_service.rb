@@ -17,16 +17,6 @@ class QuestionService
     question.answers.exists?(user_id: user.id)
   end
 
-  # Returns the answer if it exists
-  def answer
-    question.answers.find(:first, conditions: { user_id: user.id })
-  end
-
-  # Returns the list of answers for this question.
-  def answers
-    question.answers
-  end
-
   # Yields to AnswerService instances bounded to each answer and user.
   # It returns a collect of AnswerService if there is no block.
   #
