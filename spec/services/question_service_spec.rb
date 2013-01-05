@@ -92,7 +92,8 @@ describe QuestionService do
     end
 
     it "should return a list of answers" do
-      FactoryGirl.create(:complete_answer, cooperations_count: 0, question: question)
+      FactoryGirl.create(:complete_answer, cooperations_count: 0,
+                         question: question)
       subject.answers.count.should == 1
     end
   end
@@ -105,7 +106,8 @@ describe QuestionService do
     end
 
     it "should yield an answer service instance" do
-      FactoryGirl.create(:complete_answer, cooperations_count: 0, question: question)
+      FactoryGirl.create(:complete_answer, cooperations_count: 0,
+                         question: question)
 
       expect { |block|
         subject.answer_services(&block)

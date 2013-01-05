@@ -24,7 +24,9 @@ describe CooperationForm do
     let(:user) { FactoryGirl.create(:user) }
     let(:answer) { FactoryGirl.create(:complete_answer) }
     subject do
-      CooperationForm.new(user_id: user.id, answer_id: answer.id, rationale: 'Lorem rational', recommendation: 'Lorem recommendation')
+      CooperationForm.new(user_id: user.id, answer_id: answer.id,
+                          rationale: 'Lorem rational',
+                          recommendation: 'Lorem recommendation')
     end
 
     it "should create a new cooperation for the user" do

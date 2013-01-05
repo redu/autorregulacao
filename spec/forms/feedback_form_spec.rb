@@ -26,13 +26,15 @@ describe FeedbackForm do
 
     it "should update cooperation" do
       expect {
-        subject.attributes = params.except(:user_id).merge({feedback_accepted: false})
+        subject.attributes = params.except(:user_id).
+          merge({feedback_accepted: false})
         subject.save
       }.to change(subject.cooperation, :feedback_accepted)
     end
 
     it "should invoke #update_attributes" do
-      cooperation.should_receive(:update_attributes).with(params.except(:user_id))
+      cooperation.should_receive(:update_attributes).
+        with(params.except(:user_id))
       subject.save
     end
   end

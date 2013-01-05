@@ -36,7 +36,8 @@ feature 'Cooperating' do
       scenario "user visits the answer index page" do
         visit "/questions/#{empty_question.id}/answers"
 
-        expect(page).to have_content "Ops, Esta Questão Ainda Não Foi Respondida Por Seus Colegas"
+        expect(page).to have_content \
+          "Ops, Esta Questão Ainda Não Foi Respondida Por Seus Colegas"
       end
     end
 
@@ -117,8 +118,10 @@ feature 'Cooperating' do
       visit "/questions/#{question.id}"
 
       within('.positive-feedback-form form') do
-        fill_in 'feedback_form[feedback_statement]', with: 'Lorem feedback statement'
-        fill_in 'feedback_form[feedback_reflection]', with: 'Lorem feedback reflection'
+        fill_in 'feedback_form[feedback_statement]',
+          with: 'Lorem feedback statement'
+        fill_in 'feedback_form[feedback_reflection]',
+          with: 'Lorem feedback reflection'
         click_button 'accept_recommendation'
       end
 
