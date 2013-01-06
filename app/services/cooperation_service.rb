@@ -1,7 +1,8 @@
-class CooperationService < BaseForm
+class CooperationService
+  include Virtus
+
   attribute :user, User
   attribute :cooperation, Cooperation
-
 
   def feedback_form
     FeedbackForm.new(user_id: user.id, id: cooperation.id)
