@@ -1,5 +1,5 @@
 # encoding: UTF-8
-require 'spec_helper'
+require 'feature_spec_helper'
 
 feature 'Cooperating' do
   let(:user) do
