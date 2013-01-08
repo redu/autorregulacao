@@ -1,18 +1,45 @@
 <%= render 'shared/coop_nav', question_service: @question_service %>
 <p class="instructions">
-  Ajude seus colegas a entender melhor as dificuldades enfrentadas na compreensão do assunto dado em sala. Escolha uma das pessoas abaixo para começar a cooperar:
+  Ajude seus colegas a entender melhor as dificuldades enfrentadas na compreensão do assunto dado em sala.
 </p>
+
+<% pending_answers = @question_service.pending %>
+<% if pending_answers.count != 0 %>
+  <div class="list-subject answer-priority-list">
+    <div class="list-subject-header">
+      <h4 class="list-subject-name">Lista preferêncial</h4>
+    </div>
+    <div class="list-subject-body">
+      <p class="list-subject-description icon-description-gray_16_18-before" title="Descrição">A sua opinião é muito importante nas respostas abaixo pois você foi o primeiro a contribuir com outras respostas destas pessoas</p>
+      <ol class="list-button">
+        <% pending_answers.each do |answer| %>
+          <% service = AnswerService.new(user: current_user, answer: answer) %>
+          <li class="list-button-item link-container">
+            <%= link_to answer.initial.truncate(40), answer_path(answer), class: 'list-button-link link-target icon-exercise-lightblue_16_18-before' %>
+            <div class="list-lecture-info">
+              <% if service.cooperated? %>
+                <span class="label-online" rel="tooltip" data-original-title="Você já cooperou com este colega">Respondido</span>
+              <% else %>
+                <span class="label-notify-me" rel="tooltip" data-original-title="Você ainda não cooperou com este colega">Responder</span>
+              <% end %>
+              <span class="wall-stats icon-wall-gray_16_18-before" rel="tooltip" data-original-title="2000 respostas"><%= answer.cooperations.count %></span>
+            </div>
+          </li>
+        <% end %>
+      </ol>
+    </div>
+  </div>
+<% end %>
+
 
 <% answer_services = @question_service.answer_services(where: ["user_id != ?", @question_service.user.id]) %>
 <% if answer_services.count == 0 %>
   <%= render 'shared/message_info', greeting: t('Ops,'), message: t('Esta questão ainda não foi respondida por seus colegas.') %>
 <% else %>
   <div class="list-subject answer-list">
-    <!--
     <div class="list-subject-header">
-      <h4 class="list-subject-name">Você também pode contribuir com outros colegas</h4>
+      <h4 class="list-subject-name">Todas</h4>
     </div>
-    -->
     <div class="list-subject-body">
       <ol class="list-button">
         <% answer_services.each do |service| %>
