@@ -1,35 +1,45 @@
 # encoding: UTF-8
 class ArExerciseForm < BaseForm
-  attr_reader :ar_exercise
+  attr_reader :ar_exercise, :questions_form
   attribute :title, String
   attribute :user_id, Integer
-  attribute :questions, Array
+  attribute :questions, Hash,
+    default: Hash[3.times.collect { |i| [i, { title: '', statement: '' }] }]
 
   validates :questions, length: { is: 3 }
-  validates :title, :user_id, presence: true
+  validates :user_id, presence: true
 
   def valid?
     if questions_form.collect(&:valid?).reduce(:&)
       super
     else
-      #FIXME add real question errors
-      errors.add :base, 'as questões devem estar completas'
+      questions_form.each_with_index do |question, index|
+        errors[:questions][index] = question.errors
+      end
       false
     end
   end
 
   def persist!
     @ar_exercise = ArExercise.create(title: title) do |e|
+      #FIXME this should be a computed property from ID
+      last_id = ArExercise.last.try(:id) || 0
+      e.title = "Exercício #{last_id + 1}"
       e.user = user
     end
-    questions_form(ar_exercise_id: ar_exercise.id).collect(&:save)
+
+    @questions_form = questions_form.collect do |question|
+      question.ar_exercise_id = @ar_exercise.id
+      question.save
+      question
+    end
 
     @ar_exercise
   end
 
-  def questions_form(attrs={})
-    @questions_form ||= questions.collect do |i|
-      QuestionForm.new(attrs.merge(i))
+  def questions_form
+    @questions_form ||= questions.collect do |key, value|
+      QuestionForm.new(value)
     end
   end
 

@@ -3,14 +3,16 @@ require 'spec_helper'
 
 describe ArExerciseForm do
   it_behaves_like "a form"
+  let(:qs) do
+    Hash[1.upto(3).collect { |i| [i, { title: 'lorem', statement: 'lorem' }] }]
+  end
 
   subject do
-    qs = Array.new(3, {title: 'Lorem', statement: 'Lorem'})
     ArExerciseForm.new(title: 'Lorem', questions: qs, user_id: 1)
   end
 
   context "validations" do
-    %w(user_id title).each do |attr|
+    %w(user_id).each do |attr|
       it { should validate_presence_of attr }
     end
 
@@ -29,6 +31,9 @@ describe ArExerciseForm do
       before do
         subject.stub(:questions_form).
           and_return(3.times.collect { mock('QuestionForm') })
+        subject.questions_form.each do |mock|
+          mock.stub(:errors).and_return({})
+        end
       end
 
       it "should validate questions" do
@@ -44,10 +49,15 @@ describe ArExerciseForm do
       end
 
       it "should display errors for questions" do
-        subject.questions_form.each { |mock| mock.stub(:valid?).and_return(false) }
-        subject.valid?
+        subject.questions_form.each do |mock|
+          mock.stub(:valid?).and_return(false)
+          mock.stub(:errors).and_return({foo: :bar})
+        end
 
-        subject.errors[:base].should include "as questões devem estar completas"
+        subject.valid?
+        subject.errors[:questions].each do |q|
+          q.should include({ foo: :bar })
+        end
       end
     end
   end
