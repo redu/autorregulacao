@@ -1,5 +1,6 @@
 # encoding: UTF-8
 class ArExerciseForm < BaseForm
+  attr_reader :ar_exercise
   attribute :title, String
   attribute :user_id, Integer
   attribute :questions, Array
@@ -17,7 +18,22 @@ class ArExerciseForm < BaseForm
     end
   end
 
-  def questions_form
-    @questions_form ||= questions.collect { |i| QuestionForm.new(i) }
+  def persist!
+    @ar_exercise = ArExercise.create(title: title) do |e|
+      e.user = user
+    end
+    questions_form(ar_exercise_id: ar_exercise.id).collect(&:save)
+
+    @ar_exercise
+  end
+
+  def questions_form(attrs={})
+    @questions_form ||= questions.collect do |i|
+      QuestionForm.new(attrs.merge(i))
+    end
+  end
+
+  def user
+    @user = User.find_by_id(user_id)
   end
 end

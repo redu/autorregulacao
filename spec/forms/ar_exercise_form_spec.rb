@@ -53,6 +53,25 @@ describe ArExerciseForm do
   end
 
   context "#persist!" do
+    let(:user) { FactoryGirl.create(:user) }
+    before do
+      subject.user_id = user.id
+    end
+
+    it "should save the questions" do
+      expect {
+        subject.persist!
+      }.to change(Question, :count).by(3)
+    end
+    it "should save the exercise" do
+      expect {
+        subject.persist!
+      }.to change(ArExercise, :count).by(1)
+    end
+    it "should associate the user to the exercise" do
+      subject.persist!
+      subject.ar_exercise.user.should == user
+    end
   end
 
 end
