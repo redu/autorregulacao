@@ -1,10 +1,11 @@
 <ul class="tabs tabs-big admin-nav">
-  <li class="tab <%= current_page?('/prototype/new') ? 'tab-active' : '' %>">
-    <%= link_to "Novo exercício", "/prototype/new", class: 'tab-title' %>
+  <% new_or_create = current_page?(controller: :ar_exercises, action: :new) %>
+  <li class="tab <%= new_or_create ? 'tab-active' : '' %>">
+    <%= link_to "Novo exercício", new_ar_exercise_path, class: 'tab-title' %>
   </li>
-  <% index_or_show = current_page?('/prototype/index') || current_page?('/prototype/show') %>
-  <li class="tab <%= index_or_show ? 'tab-active' : '' %>">
-    <%= link_to "Verificar exercícios", "/prototype/index", class: 'tab-title' %>
+  <% index = current_page?(controller: :ar_exercises, action: :index) %>
+  <li class="tab <%= index ? 'tab-active' : '' %>">
+    <%= link_to "Verificar exercícios", ar_exercises_path, class: 'tab-title' %>
     <% if current_page?('/prototype/show') %>
       <span class="tab-sub-title legend"><%= t('Correção') %></span>
     <% end %>
