@@ -1,0 +1,39 @@
+<%= render :partial => 'shared/nav' %>
+<%= render 'shared/message_info', :message => "Aqui você pode criar exercícios que os alunos poderão responder anonimamente. O objetivo deste exercício é gerar reflexão no aluno a respeito da sua aprendizagem. Em geral, é recomendado criar questões iguais as trabalhadas em sala.", :greeting => "Bem-vindo!" %>
+
+<%= form_for @exercise_form, url: ar_exercises_path, method: :post, class: 'ar-exercise-form' do |f| %>
+  <h3>Exercício autorregulatório #1</h3>
+  <%= f.hidden_field :user_id %>
+  <p class="instructions">Preencha os três campos abaixo com questões relativas aos assuntos discutidos em sala. Os alunos poderão responder anonimamente relatando as dificuldades enfrentadas.</p>
+  <% f.object.questions_form.each_with_index do |question_form, i| %>
+    <% _i = i + 1 %>
+    <%= f.fields_for(:"questions[#{i}]", question_form) do |question| %>
+      <%= field_set_tag t("Questão número #{_i}"), class: 'ar-exercise-fieldset' do %>
+        <div class="control-group">
+          <div class="control-label">
+            <%= question.label :title, t('Nome') %>
+          </div>
+          <div class="control">
+            <%= question.text_field :title, placeholder: 'Em geral é recomendado utilizar questões que foram abordadas em sala.' %>
+            <%= concave_errors_for(question.object, :title) %>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="control-label">
+            <%= question.label :statement, t('Conteúdo') %>
+          </div>
+          <div class="control">
+            <%= question.text_area :statement, rows: 7, placeholder: 'Informe o conteúdo da questão. Se possível contextualize os alunos sobre quando ela foi resolvida.' %>
+            <%= concave_errors_for(question.object, :statement) %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <div class="form-actions">
+    <%= f.button t('Criar exercício'), class: 'button-primary button-big' %>
+  </div>
+<% end %>
+
