@@ -18,4 +18,10 @@ class ArExercisesController < ApplicationController
       render :new
     end
   end
+
+  def index
+    @exercises = ArExercise.includes(questions: :answers).all
+
+    respond_with(@exercises)
+  end
 end

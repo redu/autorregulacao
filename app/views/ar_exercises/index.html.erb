@@ -1,0 +1,40 @@
+<%= render :partial => 'shared/nav' %>
+<%= render 'shared/message_info', :message => "estes são os exercícios autorrgurlatórios criados para esta disciplina. Clique no nome da questão para avalia-la individualmente.", :greeting => "Olá," %>
+
+<% @exercises.each do |exercise| %>
+  <div class="ar-exercise">
+    <h4 class="ar-exercise-title"><%= exercise.title %></h4>
+    <div class="ar-exercise-actions">
+      <%= link_to "Enviar por e-mail", "#", class: 'button-default' %>
+      <%= link_to "Imprimir", "#", class: 'button-default' %>
+    </div>
+    <table class="table-with-borderradius table-with-link">
+      <thead>
+        <th width="20px">#</th>
+        <th width="40%"><%= t('Questão') %></th>
+        <th><%= t('Última resposta em') %></th>
+        <th><%= t('Respostas') %></th>
+      </thead>
+      <tbody>
+        <% exercise.questions.each_with_index do |question, i| %>
+          <tr class="link-container">
+            <td><%= i %></td>
+            <td><%= link_to question.statement.truncate(40), question_path(question), class: 'link-target' %></td>
+            <td>
+              <% if question.answers.empty? %>
+                <span class="label-notify-me">Sem respostas</span>
+              <% else %>
+                <%= l(question.answers.last.created_at, format: :short) %>
+              <% end %>
+            </td>
+            <td>
+              <%= question.answers.length %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <hr class="list-separator" />
+<% end %>
+
