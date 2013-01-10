@@ -15,4 +15,13 @@ class QuestionsController < ApplicationController
       respond_with(@question_service)
     end
   end
+
+  def summary
+    question = Question.find(params[:id], include: { answers: :cooperations })
+    @question_service = QuestionService.new(user: current_user, question: question)
+
+    respond_with(@question_service) do |format|
+      format.html { render layout: 'space' }
+    end
+  end
 end

@@ -4,6 +4,10 @@ Autoregulation::Application.routes.draw do
 
   resources :ar_exercises, only: [:new, :create, :index]
   resources :questions, only: [:show] do
+    member  do
+      get :summary
+    end
+
     resources :answers, only: [:create, :index]
   end
 

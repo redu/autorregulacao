@@ -19,7 +19,7 @@
         <% exercise.questions.each_with_index do |question, i| %>
           <tr class="link-container">
             <td><%= i %></td>
-            <td><%= link_to question.statement.truncate(40), question_path(question), class: 'link-target' %></td>
+            <td><%= link_to question.statement.truncate(40), summary_question_path(question), class: 'link-target' %></td>
             <td>
               <% if question.answers.empty? %>
                 <span class="label-notify-me">Sem respostas</span>
