@@ -8,7 +8,7 @@ class SessionsController < BaseController
     Rails.logger.info "Adding #{@user.id} to the session[:user_id]"
     session[:user_id] = @user.id
 
-    redirect_to question_path(Question.first)
+    redirect_to new_ar_exercise_path
   end
 
   protected
