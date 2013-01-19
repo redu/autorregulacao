@@ -12,11 +12,11 @@ feature 'Cooperating' do
     FactoryGirl.create(:complete_question, answers_count: 0)
   end
 
-  before do
-    BaseController.any_instance.stub(:current_user).and_return(user)
-  end
-
   context "when listing the answers" do
+    before do
+      mock_provider(user)
+      login_with_oauth
+    end
     scenario "user visits the answer index page" do
       visit "/questions/#{question.id}/answers"
 
@@ -52,6 +52,7 @@ feature 'Cooperating' do
   end
 
   context "when cooperating" do
+    before { login_with_oauth }
     let(:answer) { question.answers.first }
     scenario "user vistis the answer page" do
       visit "/answers/#{answer.id}"
@@ -102,7 +103,9 @@ feature 'Cooperating' do
       end
     end
     before do
-      BaseController.any_instance.stub(:current_user).and_return(answer.user)
+      # BaseController.any_instance.stub(:current_user).and_return(answer.user)
+      mock_provider(answer.user)
+      login_with_oauth
     end
     scenario "user visits question page" do
       visit "/questions/#{question.id}"

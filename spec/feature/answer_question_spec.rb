@@ -10,7 +10,8 @@ feature 'Answering question' do
   end
 
   before do
-    BaseController.any_instance.stub(:current_user).and_return(user)
+    mock_provider(user)
+    login_with_oauth
   end
 
   scenario "user vists the question page" do
