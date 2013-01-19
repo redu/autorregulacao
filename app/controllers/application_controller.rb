@@ -6,6 +6,11 @@ class ApplicationController < BaseController
   # Verifies if current_user exists and redirects to authentication action if
   # doesn't
   def verify_current_user
-    redirect_to create_session_path(provider: :redu) unless current_user
+    unless current_user
+      redirect = request.fullpath
+      Rails.logger.info "verify_current_user: storing #{redirect} on session"
+      session['redirect_to'] = redirect
+      redirect_to create_session_path(provider: :redu)
+    end
   end
 end
