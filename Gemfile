@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails', '~> 3.2.10'
-gem 'sqlite3'
 gem 'omniauth-redu', git: 'git://github.com/redu/omniauth-redu.git'
 gem 'factory_girl_rails'
 gem 'virtus'
@@ -27,6 +26,16 @@ group :test do
   gem 'capybara'
 end
 
+group :test, :development do
+  # To use debugger
+  gem 'debugger'
+  gem 'sqlite3'
+end
+
+group :production do
+  gem 'pg'
+end
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -38,6 +47,3 @@ end
 
 # Deploy with Capistrano
 # gem 'capistrano'
-
-# To use debugger
-gem 'debugger'
