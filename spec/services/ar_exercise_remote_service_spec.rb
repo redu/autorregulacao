@@ -3,6 +3,9 @@ require 'spec_helper'
 describe ArExerciseRemoteService do
   include Rails.application.routes.url_helpers
 
+  let(:user) { FactoryGirl.create(:user) }
+  let(:client) {  Redu::Client.new(oauth_token_secret: user.token) }
+
   context ".new" do
     let(:ar_exercise) { FactoryGirl.create(:ar_exercise) }
     it "should be initilized with ArExercise" do
@@ -21,8 +24,6 @@ describe ArExerciseRemoteService do
   end
 
   context "#create_subject!" do
-    let(:user) { FactoryGirl.create(:user) }
-    let(:client) {  Redu::Client.new(oauth_token_secret: user.token) }
     let(:space) { FactoryGirl.create(:space) }
     let(:exercise) do
       FactoryGirl.create(:ar_exercise, user: user, space: space)
@@ -49,8 +50,6 @@ describe ArExerciseRemoteService do
   end
 
   context "#create_questions!" do
-    let(:user) { FactoryGirl.create(:user) }
-    let(:client) {  Redu::Client.new(oauth_token_secret: user.token) }
     let(:exercise) do
       FactoryGirl.create(:complete_ar_exercise, user: user, core_id: 12)
     end
