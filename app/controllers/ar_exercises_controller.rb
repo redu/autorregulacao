@@ -31,10 +31,10 @@ class ArExercisesController < ApplicationController
   private
 
   def space
-    raise ActiveRecord::RecordNotFound.new("There is no space with space_id == #{params[:space_id]}") unless params[:space_id]
+    raise ActiveRecord::RecordNotFound.new("There is no space with space_id == #{params[:redu_space_id]}") unless params[:redu_space_id]
 
     @space_finder ||= SpaceFinderService.
-      new(space_id: params[:space_id], user: current_user)
+      new(space_id: params[:redu_space_id], user: current_user)
 
     @space_finder.find
   end

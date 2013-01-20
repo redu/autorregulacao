@@ -16,9 +16,9 @@ class BaseController < ActionController::Base
   # Verifies if the loged in user is the same passed by the canvas provider
   def current_user
     return @current_user if defined? @current_user
-    return session_user unless params[:user_id]
+    return session_user unless params[:redu_user_id]
 
-    user_id = params[:user_id]
+    user_id = params[:redu_user_id]
     if session_user.try(:uid) == user_id
       @current_user ||= session_user
     end
