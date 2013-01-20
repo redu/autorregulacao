@@ -10,10 +10,7 @@ class ArExerciseRemoteService
 
   def create!
     exercise = create_subject!
-
-    exercise.questions.each do |question|
-      create_question!(question)
-    end
+    create_questions!
 
     exercise
   end

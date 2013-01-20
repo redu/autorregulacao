@@ -88,6 +88,23 @@ describe ArExerciseRemoteService do
     end
   end
 
+  context "#create!" do
+    before do
+      subject.stub(:create_subject!)
+      subject.stub(:create_questions!)
+    end
+
+    it "should invoke #create_subject!" do
+      subject.should_receive(:create_subject!)
+      subject.create!
+    end
+
+    it "should invoke #create_questions!" do
+      subject.should_receive(:create_questions!)
+      subject.create!
+    end
+  end
+
   def default_url_options
     { host: Autoregulation::Application.config.host }
   end
