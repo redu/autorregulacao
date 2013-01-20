@@ -2,7 +2,12 @@ Autoregulation::Application.routes.draw do
   match '/auth/:provider/callback', :to => 'sessions#create'
   match '/auth/:provider', :to => 'sessions#create', as: :create_session
 
+  resources :spaces, only: :show do
+    resources :ar_exercises, only: [:new, :create, :index]
+  end
+
   resources :ar_exercises, only: [:new, :create, :index]
+
   resources :questions, only: [:show] do
     member  do
       get :summary
@@ -72,5 +77,5 @@ Autoregulation::Application.routes.draw do
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-  match ':controller(/:action(/:id))(.:format)'
+  # match ':controller(/:action(/:id))(.:format)'
 end

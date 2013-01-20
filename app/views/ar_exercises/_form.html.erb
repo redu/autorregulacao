@@ -1,6 +1,7 @@
 <%= form_for form, url: ar_exercises_path, method: :post, class: 'ar-exercise-form' do |f| %>
   <h3>Exercício autorregulatório #1</h3>
   <%= f.hidden_field :user_id %>
+  <%= f.hidden_field :space_id %>
   <p class="instructions">Preencha os três campos abaixo com questões relativas aos assuntos discutidos em sala. Os alunos poderão responder anonimamente relatando as dificuldades enfrentadas.</p>
   <% f.object.questions_form.each_with_index do |question_form, i| %>
     <% _i = i + 1 %>

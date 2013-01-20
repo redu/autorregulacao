@@ -3,7 +3,8 @@ class ArExercisesController < ApplicationController
   respond_to :html
 
   def new
-    @exercise_form = ArExerciseForm.new(user_id: current_user.id)
+    @exercise_form = ArExerciseForm.
+      new(user_id: current_user.id, space_id: space.id)
     @exercise_form.questions_form
 
     respond_with(@exercise_form)
@@ -23,5 +24,14 @@ class ArExercisesController < ApplicationController
     @exercises = ArExercise.includes(questions: :answers).all
 
     respond_with(@exercises)
+  end
+
+  private
+
+  def space
+    @space_finder ||= SpaceFinderService.
+      new(space_id: params[:space_id], user: current_user)
+
+    @space_finder.find
   end
 end

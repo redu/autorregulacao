@@ -8,11 +8,11 @@ describe ArExerciseForm do
   end
 
   subject do
-    ArExerciseForm.new(title: 'Lorem', questions: qs, user_id: 1)
+    ArExerciseForm.new(title: 'Lorem', questions: qs, user_id: 1, space_id: 1)
   end
 
   context "validations" do
-    %w(user_id).each do |attr|
+    %w(user_id space_id).each do |attr|
       it { should validate_presence_of attr }
     end
 
@@ -64,8 +64,10 @@ describe ArExerciseForm do
 
   context "#persist!" do
     let(:user) { FactoryGirl.create(:user) }
+    let(:space) { FactoryGirl.create(:space) }
     before do
       subject.user_id = user.id
+      subject.space_id = space.id
     end
 
     it "should save the questions" do
@@ -73,6 +75,13 @@ describe ArExerciseForm do
         subject.persist!
       }.to change(Question, :count).by(3)
     end
+
+    it "should associate the ArExercise to the Space" do
+      expect {
+        subject.persist!
+      }.to change(subject.space.ar_exercises, :count).by(1)
+    end
+
     it "should save the exercise" do
       expect {
         subject.persist!

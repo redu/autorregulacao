@@ -29,10 +29,12 @@ ActiveRecord::Schema.define(:version => 20130120112816) do
   create_table "ar_exercises", :force => true do |t|
     t.string   "title"
     t.integer  "user_id"
+    t.integer  "space_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
+  add_index "ar_exercises", ["space_id"], :name => "index_ar_exercises_on_space_id"
   add_index "ar_exercises", ["user_id"], :name => "index_ar_exercises_on_user_id"
 
   create_table "cooperations", :force => true do |t|

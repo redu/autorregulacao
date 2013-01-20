@@ -1,13 +1,15 @@
 # encoding: UTF-8
 class ArExerciseForm < BaseForm
   attr_reader :ar_exercise, :questions_form
+
   attribute :title, String
   attribute :user_id, Integer
   attribute :questions, Hash,
     default: Hash[3.times.collect { |i| [i, { title: '', statement: '' }] }]
+  attribute :space_id, Integer
 
   validates :questions, length: { is: 3 }
-  validates :user_id, presence: true
+  validates :user_id, :space_id, presence: true
 
   def valid?
     if questions_form.collect(&:valid?).reduce(:&)
@@ -26,6 +28,7 @@ class ArExerciseForm < BaseForm
       last_id = ArExercise.last.try(:id) || 0
       e.title = "Exercício #{last_id + 1}"
       e.user = user
+      e.space = space
     end
 
     @questions_form = questions_form.collect do |question|
@@ -45,5 +48,9 @@ class ArExerciseForm < BaseForm
 
   def user
     @user = User.find_by_id(user_id)
+  end
+
+  def space
+    @space = Space.find_by_id(space_id)
   end
 end
