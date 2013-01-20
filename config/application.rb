@@ -70,5 +70,11 @@ module Autoregulation
     config.generators do |g|
       g.fixture_replacement :factory_girl
     end
+
+    # Client Application ID
+    config.client_id = ENV['REDU_CLIENT_ID']
+
+    # host used by URL helpers
+    config.host = "0.0.0.0:3000"
   end
 end

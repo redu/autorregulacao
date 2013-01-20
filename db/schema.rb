@@ -30,10 +30,12 @@ ActiveRecord::Schema.define(:version => 20130120112816) do
     t.string   "title"
     t.integer  "user_id"
     t.integer  "space_id"
+    t.integer  "core_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
+  add_index "ar_exercises", ["core_id"], :name => "index_ar_exercises_on_core_id"
   add_index "ar_exercises", ["space_id"], :name => "index_ar_exercises_on_space_id"
   add_index "ar_exercises", ["user_id"], :name => "index_ar_exercises_on_user_id"
 
@@ -56,11 +58,13 @@ ActiveRecord::Schema.define(:version => 20130120112816) do
     t.string   "title"
     t.text     "statement"
     t.integer  "ar_exercise_id"
+    t.integer  "core_id"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
   end
 
   add_index "questions", ["ar_exercise_id"], :name => "index_questions_on_ar_exercise_id"
+  add_index "questions", ["core_id"], :name => "index_questions_on_core_id"
 
   create_table "spaces", :force => true do |t|
     t.integer  "core_id"
