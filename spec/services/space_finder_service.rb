@@ -40,6 +40,13 @@ describe SpaceFinderService do
       it "should return a persisted instance of Space" do
         subject.find.should be_persisted
       end
+
+      it "should raise ActiveRecord::RecordNotFound when there isnt Space" do
+        subject.client.stub(:space).with(12).and_return(nil)
+        expect {
+          subject.find
+        }.to raise_error(ActiveRecord::RecordNotFound)
+      end
     end
 
     context "when the Space already exists" do
