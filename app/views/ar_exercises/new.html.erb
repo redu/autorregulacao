@@ -1,4 +1,4 @@
 <%= render :partial => 'shared/nav' %>
 <%= render 'shared/message_info', :message => "Aqui você pode criar exercícios que os alunos poderão responder anonimamente. O objetivo deste exercício é gerar reflexão no aluno a respeito da sua aprendizagem. Em geral, é recomendado criar questões iguais as trabalhadas em sala.", :greeting => "Bem-vindo!" %>
 
-<%= render :partial => 'ar_exercises/form' %>
+<%= render 'ar_exercises/form', form: @exercise_form %>
