@@ -5,6 +5,7 @@ gem 'sqlite3'
 gem 'omniauth-redu', git: 'git://github.com/redu/omniauth-redu.git'
 gem 'factory_girl_rails'
 gem 'virtus'
+gem 'redu', git: 'git://github.com/redu/redu-ruby.git'
 
 # Gems used only for assets and not required
 # in production environments by default.
