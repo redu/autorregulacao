@@ -1,6 +1,6 @@
-<%= render :partial => 'shared/nav' %>
+<%= render 'shared/nav', space: @space %>
 <div class="history-actions">
-  <a href="/prototype/index">&lt;<%= link_to "Retornar a listagem", ar_exercises_path %></a>
+  <a href="/prototype/index">&lt;<%= link_to "Retornar a listagem", space_ar_exercises_path(@space) %></a>
 </div>
 <%= render 'questions/statement', question: @question_service.question %>
 <% @question_service.answer_services.each do |answer_service| %>

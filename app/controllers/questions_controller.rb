@@ -18,6 +18,7 @@ class QuestionsController < ApplicationController
 
   def summary
     question = Question.find(params[:id], include: { answers: :cooperations })
+    @space = question.ar_exercise.space
     @question_service = QuestionService.new(user: current_user, question: question)
 
     respond_with(@question_service) do |format|

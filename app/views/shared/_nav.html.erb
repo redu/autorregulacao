@@ -1,16 +1,17 @@
 <ul class="tabs tabs-big admin-nav">
-  <% new_or_create = current_page?(controller: :ar_exercises, action: :new) %>
-  <li class="tab <%= new_or_create ? 'tab-active' : '' %>">
-    <%= link_to "Novo exercício", new_ar_exercise_path, class: 'tab-title' %>
+  <% new = current_page?(new_space_ar_exercise_path(space)) || current_page?(new_ar_exercise_path) %>
+  <li class="tab <%= new ? 'tab-active' : '' %>">
+    <%= link_to "Novo exercício", new_space_ar_exercise_path(space), class: 'tab-title' %>
   </li>
   <% summary = params[:controller] == "questions" %>
-  <% index_or_summary = current_page?(controller: :ar_exercises, action: :index) || summary %>
+  <% index_or_summary = current_page?(space_ar_exercises_path(space)) || summary %>
+
   <li class="tab <%= index_or_summary ? 'tab-active' : '' %>">
     <% if summary %>
-      <%= link_to "Verificar exercícios", space_ar_exercises, class: 'tab-title' %>
+      <%= link_to "Verificar exercícios", space_ar_exercises_path(space), class: 'tab-title' %>
       <span class="tab-sub-title legend"><%= t('Correção') %></span>
     <% else %>
-      <%= link_to "Verificar exercícios", ar_exercises_path, class: 'tab-title' %>
+      <%= link_to "Verificar exercícios", space_ar_exercises_path(space), class: 'tab-title' %>
     <% end %>
   </li>
 </ul>

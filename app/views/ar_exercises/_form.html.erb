@@ -1,4 +1,4 @@
-<%= form_for form, url: ar_exercises_path, method: :post, class: 'ar-exercise-form' do |f| %>
+<%= form_for form, url: space_ar_exercises_path(form.space), method: :post, class: 'ar-exercise-form' do |f| %>
   <h3>Exercício autorregulatório #1</h3>
   <%= f.hidden_field :user_id %>
   <%= f.hidden_field :space_id %>

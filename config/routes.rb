@@ -4,15 +4,14 @@ Autoregulation::Application.routes.draw do
 
   resources :spaces, only: :show do
     resources :ar_exercises, only: [:new, :create, :index]
+    resources :questions, only: [] do
+      member { get :summary }
+    end
   end
 
-  resources :ar_exercises, only: [:new, :create, :index]
+  resources :ar_exercises, only: :new
 
   resources :questions, only: [:show] do
-    member  do
-      get :summary
-    end
-
     resources :answers, only: [:create, :index]
   end
 

@@ -1,4 +1,4 @@
-<%= render :partial => 'shared/nav' %>
+<%= render 'shared/nav', space: @space %>
 <%= render 'shared/message_info', :message => "estes são os exercícios autorrgurlatórios criados para esta disciplina. Clique no nome da questão para avalia-la individualmente.", :greeting => "Olá," %>
 
 <% @exercises.each do |exercise| %>
@@ -19,7 +19,7 @@
         <% exercise.questions.each_with_index do |question, i| %>
           <tr class="link-container">
             <td><%= i %></td>
-            <td><%= link_to question.statement.truncate(40), summary_question_path(question), class: 'link-target' %></td>
+            <td><%= link_to question.statement.truncate(40), summary_space_question_path(@space, question), class: 'link-target' %></td>
             <td>
               <% if question.answers.empty? %>
                 <span class="label-notify-me">Sem respostas</span>
