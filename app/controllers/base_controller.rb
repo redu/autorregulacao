@@ -19,7 +19,7 @@ class BaseController < ActionController::Base
     return session_user unless params[:redu_user_id]
 
     user_id = params[:redu_user_id]
-    if session_user.try(:uid) == user_id
+    if session_user.try(:uid) == user_id.try(:to_i)
       @current_user ||= session_user
     end
   end
