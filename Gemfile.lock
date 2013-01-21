@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git://github.com/redu/redu-ruby.git
-  revision: ad6c63e62c98a4fdb2ab75c55bf24f03c3871b8c
+  revision: 9f490cb8a8167f994c34b53639c5dde8256c7a01
   specs:
     redu (0.0.1)
       configurable (~> 1.0.0)
