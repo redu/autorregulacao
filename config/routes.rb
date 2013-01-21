@@ -2,7 +2,7 @@ Autoregulation::Application.routes.draw do
   match '/auth/:provider/callback', :to => 'sessions#create'
   match '/auth/:provider', :to => 'sessions#create', as: :create_session
 
-  resources :spaces, only: :show do
+  resources :spaces, only: [] do
     resources :ar_exercises, only: [:new, :create, :index]
     resources :questions, only: [] do
       member { get :summary }
