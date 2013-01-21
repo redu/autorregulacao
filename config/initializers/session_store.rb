@@ -1,8 +1,10 @@
 # Be sure to restart your server when you modify this file.
 
-Autoregulation::Application.config.session_store :cookie_store, key: '_autoregulation_session'
-
-# Use the database for sessions instead of the cookie-based default,
-# which shouldn't be used to store highly confidential information
-# (create the session table with "rails generate session_migration")
-# Autoregulation::Application.config.session_store :active_record_store
+if Rails.env.production?
+  Autoregulation::Application.config.session_store :active_record_store,
+    key: '_autoregulation_session',
+    domain: '.autorregulacao.heroku.com'
+else
+  Autoregulation::Application.config.session_store :active_record_store,
+    key: '_autoregulation_session'
+end
