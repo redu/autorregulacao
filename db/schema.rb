@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(:version => 20130120112816) do
     t.string   "login"
     t.string   "name"
     t.string   "token"
-    t.string   "uid"
+    t.integer  "uid"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
