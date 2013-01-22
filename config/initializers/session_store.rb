@@ -3,7 +3,7 @@
 if Rails.env.production?
   Autoregulation::Application.config.session_store :active_record_store,
     key: '_autoregulation_session',
-    domain: '.autorregulacao.heroku.com'
+    domain: ".#{ENV['HOST']}"
 else
   Autoregulation::Application.config.session_store :active_record_store,
     key: '_autoregulation_session'

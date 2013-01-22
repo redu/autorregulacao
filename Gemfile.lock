@@ -1,6 +1,7 @@
 GIT
   remote: git://github.com/redu/omniauth-redu.git
-  revision: ab305425c83dc69e84ad36deda212d3f2112a380
+  revision: 1b5d917452d8f3c8a0e3e93838de9d3b008f2432
+  branch: exp
   specs:
     omniauth-redu (0.0.1.alpha)
       omniauth-oauth2
