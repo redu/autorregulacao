@@ -1,5 +1,8 @@
-<%= render 'cooperations/item', item: item.cooperation %>
-<% unless item.feedback? %>
+<%= render 'cooperations/item', item: item %>
+<% if item.feedback? %>
+<hr class="list-separator" />
+<%= render 'feedbacks/summary', item: item %>
+<% else %>
   <div class="feedback">
     <% if @feedback_form %>
       <%= render 'feedbacks/form', form: @feedback_form %>

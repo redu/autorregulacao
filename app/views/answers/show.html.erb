@@ -21,7 +21,7 @@
 <% else %>
   <% if @answer_service.cooperated? %>
     <div class="offset1">
-      <%= render 'cooperations/item', item: @cooperation %>
+      <%= render 'cooperations/item', item: @cooperation_service %>
     </div>
   <% else %>
     <%= render 'cooperations/form', cooperation: @cooperation_form %>

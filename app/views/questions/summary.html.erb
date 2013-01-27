@@ -24,7 +24,9 @@
   </div>
   <div class="offset1">
     <% answer_service.cooperation_services do |cooperation_service| %>
-      <%= render 'cooperations/item', item: cooperation_service.cooperation %>
+      <%= render 'cooperations/item', item: cooperation_service %>
+      <hr class="list-separator" />
+      <%= render 'feedbacks/summary', item: cooperation_service %>
     <% end %>
   </div>
 <% end %>

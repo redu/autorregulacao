@@ -62,7 +62,7 @@ feature 'Cooperating' do
       end
     end
 
-    scenario "user cooperates" do
+    scenario "user fills cooperation form" do
       visit "/answers/#{answer.id}"
 
       within('form') do
@@ -103,7 +103,6 @@ feature 'Cooperating' do
       end
     end
     before do
-      # BaseController.any_instance.stub(:current_user).and_return(answer.user)
       mock_provider(answer.user)
       login_with_oauth
     end
@@ -116,7 +115,7 @@ feature 'Cooperating' do
         end
     end
 
-    scenario "user is able to answer a cooperation" do
+    scenario "user is able to feedback a cooperation" do
       visit "/questions/#{question.id}"
 
       within('.positive-feedback-form form') do
@@ -129,6 +128,24 @@ feature 'Cooperating' do
 
       expect(page).to_not have_selector('.positive-feedback-form form')
       expect(page).to_not have_selector('.negative-feedback-form form')
+    end
+
+    scenario "user is able to see its own feedback" do
+      visit "/questions/#{question.id}"
+
+      feedback_statement = 'Lorem feedback statement'
+      feedback_recommendation = 'Lorem feedback statement'
+
+      within('.positive-feedback-form form') do
+        fill_in 'feedback_form[feedback_statement]',
+          with: feedback_statement
+        fill_in 'feedback_form[feedback_reflection]',
+          with: feedback_recommendation
+        click_button 'accept_recommendation'
+      end
+
+      expect(page).to have_text feedback_statement
+      expect(page).to have_text feedback_recommendation
     end
 
     scenario "user feedback cooperation with invalid data" do
