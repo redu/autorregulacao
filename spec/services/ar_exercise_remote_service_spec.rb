@@ -66,8 +66,8 @@ describe ArExerciseRemoteService do
     end
 
     it "should create the Question as Redu::Lecture" do
-      exercise.questions.each do |q|
-        attrs = { name: q.title, type: 'Canvas',
+      exercise.questions.each_with_index do |q,i|
+        attrs = { name: q.title, type: 'Canvas', position: i,
                   lectureable: { client_application_id: 12,
                                  current_url: question_url(q) } }
 
