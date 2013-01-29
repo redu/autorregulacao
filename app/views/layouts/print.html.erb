@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Autoregulation</title>
+  <meta charset="utf-8">
+  <style type="text/css" media="all">
+    <%= Rails.application.assets.find_asset('application.css').to_s.html_safe %>
+  </style>
+  <%= csrf_meta_tags %>
+  <link rel="shortcut icon" href="#" />
+</head>
+<body class="space-canvas">
+  <%= yield %>
+</body>
+</html>
+

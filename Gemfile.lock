@@ -136,6 +136,7 @@ GEM
     omniauth-oauth2 (1.1.1)
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
+    pdfkit (0.5.2)
     pg (0.14.1)
     polyglot (0.3.3)
     rack (1.4.4)
@@ -207,6 +208,7 @@ GEM
       backports (~> 2.6.1)
       descendants_tracker (~> 0.0.1)
     websocket (1.0.6)
+    wkhtmltopdf-binary (0.9.9.1)
     xpath (1.0.0)
       nokogiri (~> 1.3)
 
@@ -220,6 +222,7 @@ DEPENDENCIES
   factory_girl_rails
   jquery-rails
   omniauth-redu!
+  pdfkit
   pg
   rails (~> 3.2.10)
   redu!
@@ -229,3 +232,4 @@ DEPENDENCIES
   sqlite3
   uglifier (>= 1.0.3)
   virtus
+  wkhtmltopdf-binary

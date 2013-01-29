@@ -1,0 +1,31 @@
+<% @question_services.each_with_index do |question_service, i| %>
+  <h3><%= question_service.question.title %></h3>
+  <%= render 'questions/statement', question: question_service.question %>
+  <% question_service.answer_services.each do |answer_service| %>
+    <% answer = answer_service.answer %>
+    <h4 class="answer-author">Anônimo #<%= answer.user.id %></h4>
+    <div class="answer-review">
+      <h5><%= t('Resposta inicial') %></h5>
+      <blockquote>
+        <p><%= answer.initial %></p>
+      </blockquote>
+
+      <h5><%= t('Onde errou?') %></h5>
+      <blockquote>
+        <p><%= answer.rationale %></p>
+      </blockquote>
+
+      <h5><%= t('Por que errou?') %></h5>
+      <blockquote>
+        <%= answer.reflection %>
+      </blockquote>
+    </div>
+    <div class="offset1">
+      <% answer_service.cooperation_services do |cooperation_service| %>
+        <%= render 'cooperations/item', item: cooperation_service %>
+        <hr class="list-separator" />
+        <%= render 'feedbacks/summary', item: cooperation_service %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

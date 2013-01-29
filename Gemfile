@@ -5,6 +5,8 @@ gem 'omniauth-redu', git: 'git://github.com/redu/omniauth-redu.git', branch: 'ex
 gem 'factory_girl_rails'
 gem 'virtus'
 gem 'redu', git: 'git://github.com/redu/redu-ruby.git'
+gem 'wkhtmltopdf-binary'
+gem 'pdfkit'
 
 # Gems used only for assets and not required
 # in production environments by default.

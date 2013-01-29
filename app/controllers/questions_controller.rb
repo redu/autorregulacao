@@ -25,4 +25,16 @@ class QuestionsController < ApplicationController
       format.html { render layout: 'space' }
     end
   end
+
+  def index
+    @space = Space.find(params[:space_id])
+    @ar_exercise = ArExercise.find(params[:ar_exercise_id])
+    @question_services = @ar_exercise.questions.map do |question|
+      QuestionService.new(user: current_user, question: question)
+    end
+
+    respond_with(@question_services) do |format|
+      format.html { render layout: 'print' }
+    end
+  end
 end

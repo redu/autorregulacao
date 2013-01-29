@@ -76,5 +76,6 @@ module Autoregulation
 
     # host used by URL helpers
     config.host = "0.0.0.0:3000"
+    config.middleware.use PDFKit::Middleware
   end
 end
