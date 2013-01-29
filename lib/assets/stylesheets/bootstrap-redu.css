@@ -446,37 +446,35 @@ h7 {
 }
 
 h1 {
-  font: 300 60px/56px museo-sans-rounded, museo-sans, "Helvetica Neue", Arial, sans-serif;
+  font: 300 60px/56px "Helvetica Neue", Arial, sans-serif;
   letter-spacing: -3px;
 }
 
 h2, .header-breadcrumb-big-item {
-  font: 500 36px/36px museo-sans, "Helvetica Neue", Arial, sans-serif;
+  font: 500 36px/36px "Helvetica Neue", Arial, sans-serif;
   letter-spacing: -2px;
 }
 
 h3, .header-breadcrumb-item {
-  font: 500 21px/26px museo-sans, "Helvetica Neue", Arial, sans-serif;
-  letter-spacing: -1px;
+  font: 500 21px/26px "Helvetica Neue", Arial, sans-serif;
 }
 
 h4 {
-  font: 500 18px/21px museo-sans, "Helvetica Neue", Arial, sans-serif;
-  letter-spacing: -1px;
+  font: 500 18px/21px "Helvetica Neue", Arial, sans-serif;
 }
 
 h5 {
-  font: 500 16px/18px museo-sans, "Helvetica Neue", Arial, sans-serif;
+  font: 500 16px/18px "Helvetica Neue", Arial, sans-serif;
   letter-spacing: 0;
 }
 
 h6, .list-subject-item .list-button {
-  font: 300 16px/18px museo-sans, "Helvetica Neue", Arial, sans-serif;
+  font: 300 16px/18px "Helvetica Neue", Arial, sans-serif;
   letter-spacing: 0;
 }
 
 h7 {
-  font: 700 14px/18px museo-sans, "Helvetica Neue", Arial, sans-serif;
+  font: 700 14px/18px "Helvetica Neue", Arial, sans-serif;
   letter-spacing: 0;
 }
 
@@ -4353,7 +4351,7 @@ a.icon-teacher-gray_16_18-before:hover:before, .icon-teacher-gray_16_18-before:h
   border-radius: 5px;
   float: left;
   padding: 10px;
-  font-family: museo-sans, "Helvetica Neue", Arial, sans-serif;
+  font-family: "Helvetica Neue", Arial, sans-serif;
   font-weight: 300;
   font-size: 16px;
 }
@@ -4713,7 +4711,7 @@ a.icon-teacher-gray_16_18-before:hover:before, .icon-teacher-gray_16_18-before:h
   font-size: 16px;
   letter-spacing: -1px;
   font-weight: 100;
-  font-family: museo-sans, "Helvetica Neue", Arial, sans-serif;
+  font-family: "Helvetica Neue", Arial, sans-serif;
   color: #6d6e6f;
   display: block;
   padding: 0 10px;
@@ -5351,7 +5349,7 @@ a.icon-teacher-gray_16_18-before:hover:before, .icon-teacher-gray_16_18-before:h
 }
 
 .portal-title-link {
-  font: 500 18px/21px museo-sans, "Helvetica Neue", Arial, sans-serif;
+  font: 500 18px/21px "Helvetica Neue", Arial, sans-serif;
   letter-spacing: -1px;
   margin-top: 4px;
   width: 140px;
@@ -6451,7 +6449,7 @@ hr {
 }
 
 .general-list-item-title {
-  font: 500 18px/18px museo-sans, "Helvetica Neue", Arial, sans-serif;
+  font: 500 18px/18px "Helvetica Neue", Arial, sans-serif;
   letter-spacing: -1px;
 }
 
@@ -6521,7 +6519,7 @@ hr {
 
 .general-list-item-counter {
   float: left;
-  font: 100 16px/18px museo-sans, "Helvetica Neue", Arial, sans-serif;
+  font: 100 16px/18px "Helvetica Neue", Arial, sans-serif;
 }
 .general-list-item-counter +
 .general-list-item-counter {
