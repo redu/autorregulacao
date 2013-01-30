@@ -6,12 +6,17 @@
     <h4 class="ar-exercise-title"><%= exercise.title %></h4>
     <div class="ar-exercise-actions">
 <<<<<<< HEAD
+<<<<<<< HEAD
       <%= link_to "Enviar por e-mail", "#", class: 'button-default' %>
       <%= link_to "Imprimir", "#", class: 'button-default' %>
 =======
       <%= link_to "Enviar por e-mail", "#", class: 'button-default button-disabled' %>
       <%= link_to "Imprimir", space_ar_exercise_questions_path(@space, exercise, format: 'pdf'), class: 'button-default' %>
 >>>>>>> 1ddb0c9... Tries to cache pdf summary
+=======
+      <%= link_to "Enviar por e-mail", "#", class: 'button-default button-disabled' %>
+      <%= link_to "Imprimir", space_ar_exercise_questions(@space, exercise, format: 'pdf'), class: 'button-default' %>
+>>>>>>> 221bdba... Adds links for printing ar exeercise summary.
     </div>
     <table class="table-with-borderradius table-with-link">
       <thead>
