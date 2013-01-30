@@ -6,7 +6,7 @@
     <h4 class="ar-exercise-title"><%= exercise.title %></h4>
     <div class="ar-exercise-actions">
       <%= link_to "Enviar por e-mail", "#", class: 'button-default button-disabled' %>
-      <%= link_to "Imprimir", space_ar_exercise_questions_path(@space, exercise, format: 'pdf'), class: 'button-default' %>
+      <%= link_to "Imprimir", space_ar_exercise_questions_path(@space, exercise, format: 'pdf'), target: '_BLANK', class: 'button-default' %>
     </div>
     <table class="table-with-borderradius table-with-link">
       <thead>
