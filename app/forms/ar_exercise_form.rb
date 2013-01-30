@@ -5,7 +5,9 @@ class ArExerciseForm < BaseForm
   attribute :title, String
   attribute :user_id, Integer
   attribute :questions, Hash,
-    default: Hash[3.times.collect { |i| [i, { title: '', statement: '' }] }]
+    default: Hash[
+      0.upto(2).collect { |i| [i, { title: '', statement: '', position: i }] }
+    ]
   attribute :space_id, Integer
 
   validates :questions, length: { is: 3 }

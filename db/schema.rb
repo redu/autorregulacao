@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130121234631) do
+ActiveRecord::Schema.define(:version => 20130130013256) do
 
   create_table "answers", :force => true do |t|
     t.text     "initial"
@@ -61,10 +61,12 @@ ActiveRecord::Schema.define(:version => 20130121234631) do
     t.integer  "core_id"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+    t.integer  "position"
   end
 
   add_index "questions", ["ar_exercise_id"], :name => "index_questions_on_ar_exercise_id"
   add_index "questions", ["core_id"], :name => "index_questions_on_core_id"
+  add_index "questions", ["position"], :name => "index_questions_on_position"
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false

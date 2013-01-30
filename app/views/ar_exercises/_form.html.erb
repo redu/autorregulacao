@@ -7,6 +7,7 @@
     <% _i = i + 1 %>
     <%= f.fields_for(:"questions[#{i}]", question_form) do |question| %>
       <%= field_set_tag t("Questão número #{_i}"), class: 'ar-exercise-fieldset' do %>
+        <%= question.hidden_field :position, value: i %>
         <div class="control-group">
           <div class="control-label">
             <%= question.label :title, t('Nome') %>

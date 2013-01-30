@@ -2,6 +2,7 @@ class QuestionForm < BaseForm
   attribute :title, String
   attribute :statement, String
   attribute :ar_exercise_id, Integer
+  attribute :position, Integer
 
   validates :title, :statement, presence: true
 
@@ -10,6 +11,7 @@ class QuestionForm < BaseForm
   end
 
   def persist!
-    ar_exercise.questions.create(title: title, statement: statement)
+    ar_exercise.questions.
+      create(title: title, statement: statement, position: position)
   end
 end

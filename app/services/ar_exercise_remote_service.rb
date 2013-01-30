@@ -31,8 +31,8 @@ class ArExerciseRemoteService
   # Creates the question as Lectures on Redu. It assumes ArExercise was created
   # and has the core_id.
   def create_questions!
-    ar_exercise.questions.each_with_index do |question, index|
-      attrs = {  name: question.title, type: 'Canvas', position: index,
+    ar_exercise.questions.each do |question|
+      attrs = {  name: question.title, type: 'Canvas', position: question.position,
                  lectureable:
                  { client_application_id: client_application_id,
                    current_url: question_url(question)
