@@ -1,0 +1,21 @@
+<p> Olá <%= @user.name %>, </p>
+
+<p>
+  um novo exercício anônimo foi criado na disciplina <%= @space.name %>. Para concluir esta atividade você deve responder às <%= @ar_exercise.questions.count %> questões abaixo e auxiliar, pelo menos, 3 colegas.
+</p>
+
+<ol>
+<% @ar_exercise.questions.order('questions.position ASC').each do |question| %>
+  <li><%= link_to question.title, "http://redu.com.br/espacos/#{@space.core_id}" %></li>
+<% end %>
+</ol>
+
+<p>
+  Para auxíliar seus colegas clique na opção "Cooperação" nas questões acima.
+</p>
+
+<br><br>
+--
+<br><br>
+
+Atenciosamente, <%= @ar_exercise.user.name %>
