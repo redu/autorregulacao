@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130130013256) do
+ActiveRecord::Schema.define(:version => 20130130103803) do
 
   create_table "answers", :force => true do |t|
     t.text     "initial"
@@ -31,8 +31,9 @@ ActiveRecord::Schema.define(:version => 20130130013256) do
     t.integer  "user_id"
     t.integer  "space_id"
     t.integer  "core_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.text     "representation"
   end
 
   add_index "ar_exercises", ["core_id"], :name => "index_ar_exercises_on_core_id"
@@ -62,6 +63,7 @@ ActiveRecord::Schema.define(:version => 20130130013256) do
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
     t.integer  "position"
+    t.text     "representation"
   end
 
   add_index "questions", ["ar_exercise_id"], :name => "index_questions_on_ar_exercise_id"

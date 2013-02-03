@@ -31,10 +31,13 @@ describe ArExerciseRemoteService do
     subject do
       ArExerciseRemoteService.new(ar_exercise: exercise)
     end
+    let(:core_subject) do
+      Redu::Subject.new(id: 12, name: exercise.title)
+    end
     before do
       subject.client.stub(:create_subject).
         with(space_id: space.core_id, subject: { name: exercise.title }).
-        and_return(Redu::Subject.new(id: 12, name: exercise.title))
+        and_return(core_subject)
     end
 
     it "should create the ArExercise as a Redu::Subject" do
@@ -46,6 +49,10 @@ describe ArExerciseRemoteService do
 
     it "should return a updated instance of ArExercise" do
       subject.create_subject!.core_id.should == 12
+    end
+
+    it "should update ArExercise#representation" do
+      subject.create_subject!.representation.should == core_subject.to_hash
     end
   end
 
@@ -67,9 +74,9 @@ describe ArExerciseRemoteService do
 
     it "should create the Question as Redu::Lecture" do
       exercise.questions.each do |q|
-        attrs = { name: q.title, type: 'Canvas', position: q.position,
-                  lectureable: { client_application_id: 12,
-                                 current_url: question_url(q) } }
+        attrs = { "name" => q.title, "type" => 'Canvas', "position" => q.position,
+                  "lectureable" => { "client_application_id" => 12,
+                                 "current_url" => question_url(q) } }.with_indifferent_access
 
         subject.client.connection.should_receive(:post).
           with("subjects/#{exercise.core_id}/lectures", lecture: attrs).
@@ -79,11 +86,21 @@ describe ArExerciseRemoteService do
     end
 
     it "should update Question#core_id" do
-      response = build_response_mock({ id: 3 })
+      response = build_response_mock({ "id" => 3 })
       subject.client.connection.stub(:post).and_return(response)
 
       subject.create_questions!
       subject.ar_exercise.questions.map(&:core_id).should == [3,3,3]
+    end
+
+    it "should update Question#representation" do
+      repr = { "id" => 3, "foo" => :bar }
+      response = build_response_mock(repr)
+      subject.client.connection.stub(:post).and_return(response)
+
+      subject.create_questions!
+      subject.ar_exercise.questions.map(&:representation).
+        should == 3.times.collect { repr }
     end
   end
 
