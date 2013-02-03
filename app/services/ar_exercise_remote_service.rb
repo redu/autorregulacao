@@ -1,12 +1,6 @@
 # Handles the logic of creating Subjects and Lectures with Redu REST API
-class ArExerciseRemoteService
-  include Rails.application.routes.url_helpers
-  include Virtus
-
-  attribute :ar_exercise, ArExercise
-  attribute :client, Redu::Client, default: lambda { |service,attrs|
-    Redu::Client.new(oauth_token_secret: service.ar_exercise.user.token)
-  }
+class ArExerciseRemoteService < RemoteService
+  attribute :resource, ArExercise
 
   # Creates both the Subject (ArExercise) and Lectures (Question) on Redu
   def create!
@@ -18,23 +12,23 @@ class ArExerciseRemoteService
 
   # Creates the ArExercises as Subject on Redu.
   def create_subject!
-    attrs = { name: ar_exercise.title }
+    attrs = { name: resource.title }
     subject = client.
-      create_subject(space_id: ar_exercise.space.core_id, subject: attrs)
+      create_subject(space_id: resource.space.core_id, subject: attrs)
 
-    populate_exercise_with_response_data!(ar_exercise, subject)
+    populate_exercise_with_response_data!(resource, subject)
 
-    ar_exercise
+    resource
   end
 
   # Creates the question as Lectures on Redu. It assumes ArExercise was created
   # and has the core_id.
   def create_questions!
-    ar_exercise.questions.each do |question|
+    resource.questions.each do |question|
       attrs = build_lecture_params(question)
 
       response = client.connection.
-        post("subjects/#{ar_exercise.core_id}/lectures", lecture: attrs)
+        post("subjects/#{resource.core_id}/lectures", lecture: attrs)
 
       populate_question_with_response_data!(question, response)
 
@@ -63,22 +57,13 @@ class ArExerciseRemoteService
     question
   end
 
-  def populate_exercise_with_response_data!(ar_exercise, subject)
+  def populate_exercise_with_response_data!(resource, subject)
     if core_id = subject.id
-      ar_exercise.core_id = core_id
-      ar_exercise.representation = subject.to_hash
-      ar_exercise.save
+      resource.core_id = core_id
+      resource.representation = subject.to_hash
+      resource.save
     end
 
-    ar_exercise
-  end
-
-
-  def client_application_id
-    Autoregulation::Application.config.client_id
-  end
-
-  def default_url_options
-    { host: Autoregulation::Application.config.host }
+    resource
   end
 end

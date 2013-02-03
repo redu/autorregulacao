@@ -16,8 +16,8 @@ class ArExercisesController < ApplicationController
     @exercise_form = ArExerciseForm.new(params[:ar_exercise_form])
 
     if @exercise_form.save
-      remote_service = ArExerciseRemoteService.new(ar_exercise: @exercise_form.ar_exercise)
-      remote_service.create!
+      ws = ArExerciseRemoteService.new(resource: @exercise_form.ar_exercise)
+      ws.create!
       redirect_to space_ar_exercises_path(@space)
     else
       render :new

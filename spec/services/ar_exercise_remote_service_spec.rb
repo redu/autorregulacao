@@ -2,25 +2,17 @@ require 'spec_helper'
 
 describe ArExerciseRemoteService do
   include Rails.application.routes.url_helpers
-
   let(:user) { FactoryGirl.create(:user) }
   let(:client) {  Redu::Client.new(oauth_token_secret: user.token) }
 
-  context ".new" do
-    let(:ar_exercise) { FactoryGirl.create(:ar_exercise) }
-    it "should be initilized with ArExercise" do
-      exercise = FactoryGirl.build(:ar_exercise)
-      ArExerciseRemoteService.new(ar_exercise: exercise).should
-        ArExerciseRemoteService
+  context do
+    let(:exercise) do
+      mock_model('ArExercise') do |m|
+        m.stub(:user).and_return(mock_model('User'))
+      end
     end
-
-    it "should define a defualt client" do
-      exercise = mock_model('ArExercise')
-      user = FactoryGirl.create(:user)
-      exercise.stub(:user).and_return user
-      subject = ArExerciseRemoteService.new(ar_exercise: exercise)
-      subject.client.oauth_token_secret.should == user.token
-    end
+    subject { ArExerciseRemoteService.new(resource: exercise) }
+    it_should_behave_like "a remote service"
   end
 
   context "#create_subject!" do
@@ -29,7 +21,7 @@ describe ArExerciseRemoteService do
       FactoryGirl.create(:ar_exercise, user: user, space: space)
     end
     subject do
-      ArExerciseRemoteService.new(ar_exercise: exercise)
+      ArExerciseRemoteService.new(resource: exercise)
     end
     let(:core_subject) do
       Redu::Subject.new(id: 12, name: exercise.title)
@@ -61,7 +53,7 @@ describe ArExerciseRemoteService do
       FactoryGirl.create(:complete_ar_exercise, user: user, core_id: 12)
     end
     subject do
-      ArExerciseRemoteService.new(ar_exercise: exercise)
+      ArExerciseRemoteService.new(resource: exercise)
     end
     def build_response_mock(hash)
       r = mock 'Faraday::Response'
@@ -90,7 +82,7 @@ describe ArExerciseRemoteService do
       subject.client.connection.stub(:post).and_return(response)
 
       subject.create_questions!
-      subject.ar_exercise.questions.map(&:core_id).should == [3,3,3]
+      subject.resource.questions.map(&:core_id).should == [3,3,3]
     end
 
     it "should update Question#representation" do
@@ -99,7 +91,7 @@ describe ArExerciseRemoteService do
       subject.client.connection.stub(:post).and_return(response)
 
       subject.create_questions!
-      subject.ar_exercise.questions.map(&:representation).
+      subject.resource.questions.map(&:representation).
         should == 3.times.collect { repr }
     end
   end
