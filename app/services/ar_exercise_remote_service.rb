@@ -3,9 +3,11 @@ class ArExerciseRemoteService < RemoteService
   attribute :resource, ArExercise
 
   # Creates both the Subject (ArExercise) and Lectures (Question) on Redu
-  def create!
+  def create!(&block)
     exercise = create_subject!
     create_questions!
+
+    yield(exercise) if block_given?
 
     exercise
   end

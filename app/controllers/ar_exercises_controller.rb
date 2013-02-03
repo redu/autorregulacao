@@ -17,7 +17,12 @@ class ArExercisesController < ApplicationController
 
     if @exercise_form.save
       ws = ArExerciseRemoteService.new(resource: @exercise_form.ar_exercise)
-      ws.create!
+      ws.create! do |exercise|
+        space_ws = SpaceRemoteService.
+          new(resource: exercise.space, user: exercise.user)
+        space_ws.users.
+          each { |u| ArExerciseMailer.new_exercise(exercise, u).deliver }
+      end
       redirect_to space_ar_exercises_path(@space)
     else
       render :new
