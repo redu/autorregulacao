@@ -32,4 +32,11 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+
+  # Build a mock from Faraday::Response with the specified response as body
+  def build_response_mock(response)
+    r = mock 'Faraday::Response'
+    r.stub(:body).and_return(response)
+    r
+  end
 end

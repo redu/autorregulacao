@@ -55,11 +55,6 @@ describe ArExerciseRemoteService do
     subject do
       ArExerciseRemoteService.new(resource: exercise)
     end
-    def build_response_mock(hash)
-      r = mock 'Faraday::Response'
-      r.stub(:body).and_return(hash)
-      r
-    end
     before do
       Autoregulation::Application.config.stub(:client_id).and_return(12)
     end
