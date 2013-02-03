@@ -6,7 +6,7 @@
 
 <ol>
 <% @ar_exercise.questions.order('questions.position ASC').each do |question| %>
-  <li><%= link_to question.title, "http://redu.com.br/espacos/#{@space.core_id}" %></li>
+  <li><%= link_to question.title, question.href_to('self_link') %></li>
 <% end %>
 </ol>
 
