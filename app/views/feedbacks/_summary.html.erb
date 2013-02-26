@@ -1,11 +1,15 @@
-<div class="answer-review">
-  <strong>Recomendação aceita?</strong>
-  <% if item.cooperation.feedback_accepted? %>
-    <span class="label-online">Sim</span>
-  <% else %>
-    <span class="label-notify-me">Não</span>
-  <% end %>
-  <p><%= item.cooperation.feedback_statement %></p>
-  <strong>Comentários sobre a atividade</strong>
-  <p><%= item.cooperation.feedback_reflection %></p>
-</div>
+<% if item.feedback? %>
+  <div class="answer-review">
+    <strong>Recomendação aceita?</strong>
+    <% if item.cooperation.feedback_accepted? %>
+      <span class="label-online">Sim</span>
+    <% else %>
+      <span class="label-notify-me">Não</span>
+    <% end %>
+    <p><%= item.cooperation.feedback_statement %></p>
+    <strong>Comentários sobre a atividade</strong>
+    <p><%= item.cooperation.feedback_reflection %></p>
+  </div>
+<% else %>
+  <span class="label-notify-me">Aguardando feedback</span>
+<% end %>
