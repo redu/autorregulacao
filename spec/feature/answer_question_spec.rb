@@ -5,11 +5,17 @@ feature 'Answering question' do
   let(:user) do
     FactoryGirl.create(:user)
   end
+  let(:exercise) do
+    FactoryGirl.create(:complete_ar_exercise, space: FactoryGirl.create(:space))
+  end
   let(:question) do
-    FactoryGirl.create(:complete_question)
+    exercise.questions.first
   end
 
   before do
+    SpaceRemoteService.any_instance.stub(:users) do
+      [Redu::User.new(name: "Foo", email: "abc@def.gh")]
+    end
     mock_provider(user)
     login_with_oauth
   end

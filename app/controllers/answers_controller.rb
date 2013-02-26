@@ -6,6 +6,10 @@ class AnswersController < ApplicationController
     answer_form = AnswerForm.new(params[:answer_form])
 
     if answer_form.save
+      notification = AnswerNotificationService.
+        new(exercise: question.ar_exercise, question: question)
+      notification.notify
+
       redirect_to question_path(question)
     else
       @question_service = QuestionService.

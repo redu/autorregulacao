@@ -1,0 +1,14 @@
+<p> Olá <%= @user.first_name %>, </p>
+
+<p>
+  Um colega que faz parte da disciplina <%= @space.name %> respondeu a questão <%= link_to @question.title, @question.href_to('self_link') %> e precisa da sua ajuda. Clique <%= link_to "aqui", @question.href_to('self_link') %> para cooperar com ele.
+</p>
+
+Caso você possua alguma dúvida, peça ajuda clicando <%= link_to "aqui", @question.href_to('self_link') %>
+
+<br><br>
+--
+<br><br>
+
+Atenciosamente, <%= @ar_exercise.user.name %>
+
