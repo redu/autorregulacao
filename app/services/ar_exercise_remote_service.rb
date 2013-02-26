@@ -26,7 +26,7 @@ class ArExerciseRemoteService < RemoteService
   # Creates the question as Lectures on Redu. It assumes ArExercise was created
   # and has the core_id.
   def create_questions!
-    resource.questions.each do |question|
+    resource.questions.order("questions.position ASC").each do |question|
       attrs = build_lecture_params(question)
 
       response = client.connection.
