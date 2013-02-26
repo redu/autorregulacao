@@ -5,6 +5,9 @@ Autoregulation::Application.routes.draw do
   resources :spaces, only: [] do
     resources :ar_exercises, only: [:new, :create, :index] do
       resources :questions, only: :index
+      member do
+        get :email
+      end
     end
     resources :questions, only: [] do
       member { get :summary }

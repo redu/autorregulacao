@@ -71,6 +71,8 @@ Autoregulation::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   config.host = ENV['HOST']
+  config.action_mailer.default_url_options = { :host => config.host }
+
   ActionMailer::Base.smtp_settings = {
     :port           => ENV['MAILGUN_SMTP_PORT'],
     :address        => ENV['MAILGUN_SMTP_SERVER'],

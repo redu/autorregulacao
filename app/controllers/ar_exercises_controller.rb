@@ -29,6 +29,15 @@ class ArExercisesController < ApplicationController
     end
   end
 
+  def email
+    @space = Space.find(params[:space_id])
+    @exercise = ArExercise.find(params[:id])
+
+    ArExerciseMailer.summary(@exercise, current_user).deliver
+
+    redirect_to space_ar_exercises_path(@space)
+  end
+
   def index
     @space = Space.find(params[:space_id])
     @exercises = @space.ar_exercises.includes(questions: :answers)

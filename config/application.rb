@@ -77,6 +77,9 @@ module Autoregulation
 
     # host used by URL helpers
     config.host = "0.0.0.0:3000"
+    config.action_mailer.default_url_options = { :host => config.host }
+
+
     config.middleware.use PDFKit::Middleware
   end
 end
