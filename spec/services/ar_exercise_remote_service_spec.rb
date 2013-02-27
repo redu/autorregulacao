@@ -61,9 +61,8 @@ describe ArExerciseRemoteService do
 
     it "should create the Question as Redu::Lecture" do
       exercise.questions.each do |q|
-        attrs = { "name" => q.title, "type" => 'Canvas', "position" => q.position,
-                  "lectureable" => { "client_application_id" => 12,
-                                 "current_url" => question_url(q) } }.with_indifferent_access
+        attrs = { "name" => q.title, "type" => 'Canvas', "current_url" => question_url(q) }
+        attrs = attrs.with_indifferent_access
 
         subject.client.connection.should_receive(:post).
           with("subjects/#{exercise.core_id}/lectures", lecture: attrs).

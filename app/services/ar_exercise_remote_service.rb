@@ -41,12 +41,9 @@ class ArExerciseRemoteService < RemoteService
   private
 
   def build_lecture_params(question)
-    {  name: question.title, type: 'Canvas', position: question.position,
-       lectureable:
-       { client_application_id: client_application_id,
-         current_url: question_url(question)
-    }
-    }.with_indifferent_access
+    attrs = { name: question.title, type: 'Canvas',
+              current_url: question_url(question) }
+    attrs.with_indifferent_access
   end
 
   def populate_question_with_response_data!(question, response)
