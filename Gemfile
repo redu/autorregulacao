@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '~> 3.2.10'
-gem 'omniauth-redu', git: 'git://github.com/redu/omniauth-redu.git', branch: 'exp'
+gem 'omniauth-redu'
 gem 'factory_girl_rails'
 gem 'virtus'
 gem 'redu', git: 'git://github.com/redu/redu-ruby.git'
