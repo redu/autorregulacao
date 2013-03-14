@@ -7,6 +7,7 @@ gem 'virtus'
 gem 'redu', git: 'git://github.com/redu/redu-ruby.git'
 gem 'wkhtmltopdf-binary'
 gem 'pdfkit'
+gem 'unicorn'
 
 # Gems used only for assets and not required
 # in production environments by default.
