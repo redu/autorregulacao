@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 3.2.10'
+gem 'rails', '~> 3.2.13'
 gem 'omniauth-redu'
 gem 'factory_girl_rails'
 gem 'virtus'
