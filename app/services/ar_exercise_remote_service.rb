@@ -6,8 +6,8 @@ class ArExerciseRemoteService < RemoteService
   def create!(&block)
     exercise = create_subject!
     create_questions!
-
     yield(exercise) if block_given?
+    notify_users
 
     exercise
   end
@@ -38,7 +38,22 @@ class ArExerciseRemoteService < RemoteService
     end
   end
 
+  def notify_users
+    users = space_ws.users
+    mails = users.map { |u| ArExerciseMailer.new_exercise(resource, u) }
+    begin
+      mails.map(&:deliver)
+    rescue Exception
+      Rails.logger.warn "There was an error delivering the e-mail"
+    end
+    mails
+  end
+
   private
+
+  def space_ws
+    SpaceRemoteService.new(resource: resource.space, user: resource.user)
+  end
 
   def build_lecture_params(question)
     attrs = { name: question.title, type: 'Canvas',

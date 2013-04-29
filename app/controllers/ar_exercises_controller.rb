@@ -17,12 +17,7 @@ class ArExercisesController < ApplicationController
 
     if @exercise_form.save
       ws = ArExerciseRemoteService.new(resource: @exercise_form.ar_exercise)
-      ws.create! do |exercise|
-        space_ws = SpaceRemoteService.
-          new(resource: exercise.space, user: exercise.user)
-        space_ws.users.
-          each { |u| ArExerciseMailer.new_exercise(exercise, u).deliver }
-      end
+      ws.create!
       redirect_to space_ar_exercises_path(@space)
     else
       render :new
@@ -33,7 +28,11 @@ class ArExercisesController < ApplicationController
     @space = Space.find(params[:space_id])
     @exercise = ArExercise.find(params[:id])
 
-    ArExerciseMailer.summary(@exercise, current_user).deliver
+    begin
+      ArExerciseMailer.summary(@exercise, current_user).deliver
+    rescue Exception
+      Rails.logger.warn "There was an error delivering the e-mail"
+    end
 
     redirect_to space_ar_exercises_path(@space)
   end

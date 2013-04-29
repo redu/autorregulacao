@@ -93,6 +93,7 @@ describe ArExerciseRemoteService do
   context "#create!" do
     before do
       subject.resource = mock_model('ArExercise')
+      subject.stub(:notify_users)
       subject.stub(:create_subject!).and_return(subject.resource)
       subject.stub(:create_questions!)
     end
@@ -113,8 +114,14 @@ describe ArExerciseRemoteService do
       }.to yield_with_args(subject.resource)
     end
 
-    it "should yield to the block with the exercise" do
+    it "should set the resource to the exercise" do
+      exercise = subject.create!
+      subject.resource.should == exercise
+    end
 
+    it "should invoke notify_users" do
+      subject.should_receive(:notify_users)
+      subject.create!
     end
   end
 

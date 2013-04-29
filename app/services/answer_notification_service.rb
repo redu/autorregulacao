@@ -6,16 +6,24 @@ class AnswerNotificationService
 
   def notify
     space_ws.users.each do |user|
-      mail = AnswerMailer.
-        new_answer(question: question, ar_exercise: exercise, user: user)
-      mail.deliver
+      deliver_email(user)
     end
   end
+
 
   private
 
   def deliver_email(user)
-    AnswerMailer.new_answer(question, user).deliver
+    mail = AnswerMailer.
+      new_answer(question: question, ar_exercise: exercise, user: user)
+
+    begin
+      mail.deliver
+    rescue Exception
+      Rails.logger.warn "There was an error delivering the e-mail"
+    end
+
+    mail
   end
 
   def space_ws
