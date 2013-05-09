@@ -7,10 +7,9 @@ class ApplicationController < BaseController
   # doesn't
   def verify_current_user
     unless current_user
-      redirect = request.fullpath
-      Rails.logger.info "verify_current_user: storing #{redirect} on session"
-      session['redirect_to'] = redirect
-      redirect_to create_session_path(provider: :redu)
+      return_path = request.fullpath
+      Rails.logger.info "verify_current_user: keeping path to redirect back #{return_path}"
+      redirect_to create_session_path(provider: :redu, :origin => return_path)
     end
   end
 end
